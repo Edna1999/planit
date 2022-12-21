@@ -9,19 +9,19 @@ const typeDefs = gql`
     thoughts: [Thought]!
   }
 
-  type Thought {
+  type Project {
     _id: ID
-    thoughtText: String
-    thoughtAuthor: String
-    createdAt: String
-    comments: [Comment]!
+    projectName: String
+    projectDescription: String
+    tasks: [Task]
+    users: [User]
   }
 
-  type Comment {
+  type Task {
     _id: ID
-    commentText: String
-    commentAuthor: String
-    createdAt: String
+    taskName: String
+    taskDescription: String
+    users: [User]
   }
 
   type Auth {
@@ -40,10 +40,8 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addThought(thoughtText: String!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addTask(taskName: String!, taskDescription: String!): Task
+    removeTask(taskId: ID!): Task
   }
 `;
 
