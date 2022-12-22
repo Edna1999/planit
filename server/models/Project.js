@@ -17,6 +17,11 @@ const projectSchema = new Schema({
   endDate: {
     type: Date
   },
+  isComplete: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
   tasks: [Tasks],
   projectTeam: [User]
 });

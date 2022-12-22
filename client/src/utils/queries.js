@@ -22,6 +22,31 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_PROJECTS = gql`
+  query projects {
+    projects {
+      _id
+      projectName
+      projectDescription
+      startDate
+      endDate
+      tasks {
+        _id
+        taskName
+        taskDescription
+        startDate
+        endDate
+        taskAssignee
+      }
+      projectTeam {
+        _id
+        firstName
+        lastName
+        email
+      }
+    }
+  }
+`
 
 export const QUERY_ME = gql`
   query me {
