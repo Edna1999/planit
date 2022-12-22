@@ -86,24 +86,24 @@ export const QUERY_TASKS = gql`
   }
 `;
 
-export const QUERY_PROJECTS = gql`
-  query getprojects {
-    projects {
-      _id
-      projectName
-      projectDescription
-      projectTeam {
-       userId
-       firstName 
-       lastName
-      }
-      tasks{
-       taskId
-       taskName
-       taskDescription
+// export const QUERY_PROJECTS = gql`
+//   query getprojects {
+//     projects {
+//       _id
+//       projectName
+//       projectDescription
+//       projectTeam {
+//        userId
+//        firstName 
+//        lastName
+//       }
+//       tasks{
+//        taskId
+//        taskName
+//        taskDescription
 
-      }
-      createdAt
-    }
-  }
-`;
+//       }
+//       createdAt
+//     }
+//   }
+// `;
