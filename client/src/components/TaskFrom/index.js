@@ -2,24 +2,24 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_THOUGHT } from '../../utils/mutations';
-import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
+import { ADD_TASK} from '../../utils/mutations';
+import { QUERY_TASKS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-const ThoughtForm = () => {
-  const [thoughtText, setThoughtText] = useState('');
+const TaskForm = () => {
+  const [taskDescription, setTaskDescription] = useState('');
 
-  const [characterCount, setCharacterCount] = useState(0);
+  // const [characterCount, setCharacterCount] = useState(0);
 
-  const [addThought, { error }] = useMutation(ADD_THOUGHT, {
-    update(cache, { data: { addThought } }) {
+  const [addTask, { error }] = useMutation(ADD_TASK, {
+    update(cache, { data: { addTask } }) {
       try {
-        const { thoughts } = cache.readQuery({ query: QUERY_THOUGHTS });
+        const { tasks } = cache.readQuery({ query: QUERY_TASKS });
 
         cache.writeQuery({
-          query: QUERY_THOUGHTS,
-          data: { thoughts: [addThought, ...thoughts] },
+          query: QUERY_TASKS,
+          data: { tasks: [addTask, ...tasks] },
         });
       } catch (e) {
         console.error(e);
@@ -29,7 +29,7 @@ const ThoughtForm = () => {
       const { me } = cache.readQuery({ query: QUERY_ME });
       cache.writeQuery({
         query: QUERY_ME,
-        data: { me: { ...me, thoughts: [...me.thoughts, addThought] } },
+        data: { me: { ...me, tasks: [...me.tasks, addTask] } },
       });
     },
   });
@@ -38,10 +38,10 @@ const ThoughtForm = () => {
     event.preventDefault();
 
     try {
-      const { data } = await addThought({
+      const { data } = await addTask({
         variables: {
-          thoughtText,
-          thoughtAuthor: Auth.getProfile().data.username,
+          taskDescription,
+          taskAssignee: Auth.getProfile().data.username,
         },
       });
 
@@ -51,14 +51,14 @@ const ThoughtForm = () => {
     }
   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  // const handleChange = (event) => {
+  //   const { name, value } = event.target;
 
-    if (name === 'thoughtText' && value.length <= 280) {
-      setThoughtText(value);
-      setCharacterCount(value.length);
-    }
-  };
+  //   if (name === 'taskDescription' && value.length <= 280) {
+  //     setTaskDescription(value);
+  //     setCharacterCount(value.length);
+  //   }
+  // };
 
   return (
     <div>
@@ -66,13 +66,13 @@ const ThoughtForm = () => {
 
       {Auth.loggedIn() ? (
         <>
-          <p
+          {/* <p
             className={`m-0 ${
               characterCount === 280 || error ? 'text-danger' : ''
             }`}
           >
             Character Count: {characterCount}/280
-          </p>
+          </p> */}
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
@@ -84,13 +84,13 @@ const ThoughtForm = () => {
                 value={thoughtText}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
+                // onChange={handleChange}
               ></textarea>
             </div>
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Thought
+                Add Task
               </button>
             </div>
             {error && (
@@ -102,7 +102,7 @@ const ThoughtForm = () => {
         </>
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{' '}
+          You need to be logged in to ass tasks. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
