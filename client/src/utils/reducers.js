@@ -8,7 +8,10 @@ import {
   UPDATE_PROJECT_END_DATE,
   DELETE_PROJECT,
   PROJECT_IS_COMPLETE,
-  PROJECT_IS_NOT_COMPLETE
+  PROJECT_IS_NOT_COMPLETE,
+  UPDATE_PROJECT,
+  UPDATE_CURRENT_PROJECT,
+  ADD_PROJECT
 } from "./actions"
 
 export const reducer = (state, action) => {
@@ -123,6 +126,21 @@ export const reducer = (state, action) => {
       return {
         ...state,
         projects: [...state.projects, selectedProject[0]]
+      }
+    case UPDATE_PROJECT:
+      return {
+        ...state,
+        currentProject: action.currentProject
+      }
+    case UPDATE_CURRENT_PROJECT:
+      return {
+        ...state,
+        currentProject: action.currentProject
+      }
+    case ADD_PROJECT:
+      return {
+        ...state,
+        projects: [...state.projects, action.projects]
       }
     default:
       return state;
