@@ -64,7 +64,7 @@ mutation updateProjectName($projectName: String!){
 }
 `;
 
-export const UPDATE_PROJECT_DEESCRIPTION= gql`
+export const UPDATE_PROJECT_DESCRIPTION= gql`
 mutation updateProjectDescription($projectDescription: String!){
   updateProjectDescription( projectDescription: $projectDescription) {
     project {
