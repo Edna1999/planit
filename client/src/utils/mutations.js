@@ -26,3 +26,19 @@ export const ADD_USER = gql`
   }
 `;
 
+export const ADD_TASK = gql`
+mutation addTask($taskDescription: String!) {
+  addTask(taskDescription: $taskDescription) {
+    _id
+    taskDescription
+    taskAssignee
+    createdAt
+  
+  }
+}
+`;
+
+export const ADD_PROJECT = gql`
+
+`;
+

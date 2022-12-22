@@ -58,8 +58,8 @@ const resolvers = {
     addTask: async (parent, { taskDescription }, context) => {
       if (context.user) {
         const task = await Task.create({
-          taskDescription
-          // taskAssignee: context.user.username,
+          taskDescription,
+          taskAssignee: context.user.username,
         });
 
         await User.findOneAndUpdate(
