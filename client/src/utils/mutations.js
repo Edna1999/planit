@@ -32,7 +32,7 @@ mutation addTask($taskDescription: String!) {
     _id
     taskName
     taskDescription
-    taskAssignee
+    users
     createdAt
   
   }

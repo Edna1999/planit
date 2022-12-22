@@ -22,8 +22,18 @@ const projectSchema = new Schema({
     required: true,
     default: false
   },
-  tasks: [Tasks],
-  projectTeam: [User]
+  tasks: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Task',
+    },
+  ],
+  projectTeam: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
 });
 
 module.exports = projectSchema;

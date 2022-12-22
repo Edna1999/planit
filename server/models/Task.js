@@ -16,8 +16,16 @@ const taskSchema = new Schema({
   endDate: {
     type: Date
   },
- taskAssignee: [User],
- taskProject: Project
+  users: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
+  taskProject: {
+    type: Schema.Types.ObjectId,
+    ref: 'Project',
+  }
 });
 
 module.exports = taskSchema;

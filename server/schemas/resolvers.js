@@ -4,9 +4,9 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    users: async () => {
-      return User.find().populate('projects').populate('tasks');
-    },
+    // users: async () => {
+    //   return User.find().populate('projects').populate('tasks');
+    // },
     user: async (parent, { email }) => {
       return User.findOne({ email }).populate('projects').populate('tasks');
     },
@@ -55,11 +55,11 @@ const resolvers = {
 
       return { token, user };
     },
-    addTask: async (parent, { taskDescription }, context) => {
+    addTask: async (parent, { taskName, taskDescription }, context) => {
       if (context.user) {
         const task = await Task.create({
           taskDescription,
-          taskAssignee: context.user.username,
+          taskName,
         });
 
         await User.findOneAndUpdate(
@@ -76,7 +76,7 @@ const resolvers = {
       if (context.user) {
         const task = await Task.findOneAndDelete({
           _id: taskId,
-          taskAssignee: context.user.username,
+          users: context.user.firstName,
         });
 
         await User.findOneAndUpdate(

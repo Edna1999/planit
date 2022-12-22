@@ -45,7 +45,7 @@ const TaskForm = () => {
         },
       });
 
-      setThoughtText('');
+      // setThoughtText('');
     } catch (err) {
       console.error(err);
     }
@@ -77,7 +77,7 @@ const TaskForm = () => {
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
           >
-            <div className="col-12 col-lg-9">
+            {/* <div className="col-12 col-lg-9">
               <textarea
                 name="thoughtText"
                 placeholder="Here's a new thought..."
@@ -86,7 +86,7 @@ const TaskForm = () => {
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 // onChange={handleChange}
               ></textarea>
-            </div>
+            </div> */}
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
@@ -110,4 +110,4 @@ const TaskForm = () => {
   );
 };
 
-export default ThoughtForm;
+export default TaskForm;
