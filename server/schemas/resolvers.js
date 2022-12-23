@@ -125,34 +125,40 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    updateProject: async (parent, {projectName, projectDescription }, context) => {
+    updateProject: async (parent, {projectName, projectDescription, projectTeam }, context) => {
     if(context.user){
         const project = await Project.findOneAndUpdate(
          {_id: context.user._id},
          { $addToSet: {
-          projects: projectName, projectDescription
+          projects: projectName, projectDescription, projectTeam
         } }, 
+        {$pull: {projects: projectTeam}}
          
           
         )
 
         return project
         }
+        throw new AuthenticationError('You need to be logged in!');
       },
     
     
         
-      updateTask: async (parent, { taskName, taskDescription}, context) => {
+      updateTask: async (parent, { taskName, taskDescription, users}, context) => {
         if(context.user){
            const task = await Task.findOneAndUpdate(
            {_id: context.user._id},
-            { $addToSet: {tasks: taskName, taskDescription} } 
+            { $addToSet: {tasks: taskName, taskDescription, users} },
+            {$pull: { users }}
                   
           )
         
            return task
             }
-       },  
+            throw new AuthenticationError('You need to be logged in!');
+       }, 
+       
+       
       
        
     }
