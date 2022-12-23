@@ -37,6 +37,14 @@ const userSchema = new Schema({
       ref: 'Task',
     },
   ],
+}, {
+  virtuals: {
+    fullName: {
+      get() {
+        return this.firstName + ' ' + this.lastName;
+      }
+    }
+  }
 });
 
 userSchema.pre('save', async function (next) {

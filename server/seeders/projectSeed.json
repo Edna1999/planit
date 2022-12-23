@@ -1,6 +1,7 @@
 [
   {
-    "thoughtText": "Everyone knows that debugging is twice as hard as writing a program in the first place. So if you're as clever as you can be when you write it, how will you ever debug it?",
-    "thoughtAuthor": "Brian Kernighan"
+    "projectName": "Final Project Grading",
+    "projectDescription": "Working with Mike to grade the course's final projects",
+    "users": "Eric Weiss"
   }
 ]
