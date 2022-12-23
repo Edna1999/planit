@@ -90,7 +90,72 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-  },
+
+    addProject: async (parent, { projectName, projectDescription }, context) => {
+      if (context.user) {
+        const project = await Project.create({
+          projectDescription,
+          projectName,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { projects: project._id } }
+        );
+
+        return project;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    
+    removeProject: async (parent, { projectId }, context) => {
+      if (context.user) {
+        const project = await Project.findOneAndDelete({
+          _id: projectId,
+          users: context.user.firstName,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { projects: project._id } }
+        );
+
+        return project;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    updateProject: async (parent, {projectName, projectDescription }, context) => {
+    if(context.user){
+        const project = await Project.findOneAndUpdate(
+         {_id: context.user._id},
+         { $addToSet: {
+          projects: projectName, projectDescription
+        } }, 
+         
+          
+        )
+
+        return project
+        }
+      },
+    
+    
+        
+      updateTask: async (parent, { taskName, taskDescription}, context) => {
+        if(context.user){
+           const task = await Task.findOneAndUpdate(
+           {_id: context.user._id},
+            { $addToSet: {tasks: taskName, taskDescription} } 
+                  
+          )
+        
+           return task
+            }
+       },  
+      
+       
+    }
 };
 
 module.exports = resolvers;
