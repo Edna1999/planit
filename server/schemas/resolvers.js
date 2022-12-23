@@ -4,9 +4,9 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    // users: async () => {
-    //   return User.find().populate('projects').populate('tasks');
-    // },
+    users: async () => {
+      return User.find().populate('projects').populate('tasks');
+    },
     user: async (parent, { email }) => {
       return User.findOne({ email }).populate('projects').populate('tasks');
     },
@@ -38,6 +38,7 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -55,6 +56,7 @@ const resolvers = {
 
       return { token, user };
     },
+
     addTask: async (parent, { taskName, taskDescription }, context) => {
       if (context.user) {
         const task = await Task.create({
@@ -88,7 +90,6 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-  
   },
 };
 
