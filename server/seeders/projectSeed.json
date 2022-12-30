@@ -3,5 +3,10 @@
     "projectName": "Final Project Grading",
     "projectDescription": "Working with Mike to grade the course's final projects",
     "users": "Eric Weiss"
+  },
+  {
+    "projectName": "Create Breakout Rooms",
+    "projectDescription": "Steps to creating breakout rooms so Michael can say, 'Join your rooms",
+    "users": "Michael Kotte"
   }
 ]
