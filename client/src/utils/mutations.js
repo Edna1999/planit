@@ -77,14 +77,13 @@ mutation removeProject($projectId: ID!) {
 `;
 
 export const UPDATE_PROJECT = gql`
-mutation updateProject($projectName: String!, $projectDescription: String!, $projectTeam: Array!){
-  updateProject( projectName: $projectName, projectDescription: $projectDescription, projectTeam: $projectTeam) {
+mutation updateProject($projectName: String!, $projectDescription: String!){
+  updateProject( projectName: $projectName, projectDescription: $projectDescription) {
     project {
       _id
       projectName
       projectDescription
-      projectTeam
-      createdAt
+
     }
 
   }
@@ -93,14 +92,12 @@ mutation updateProject($projectName: String!, $projectDescription: String!, $pro
 
 
 export const UPDATE_TASK = gql`
-mutation updateTask($taskName: String!, $taskDescription: String!, $users: Array!){
-  updateTask( taskName: $taskName, taskDescription: $taskDescription, users: $users) {
+mutation updateTask($taskName: String!, $taskDescription: String!){
+  updateTask( taskName: $taskName, taskDescription: $taskDescription) {
     project {
       _id
       taskName
       taskDescription
-      users
-      createdAt
     }
 
   }
@@ -109,4 +106,14 @@ mutation updateTask($taskName: String!, $taskDescription: String!, $users: Array
 
 
 
-
+export const ADD_PROJECT_MEMBER = gql`
+mutation addProjectMember($projectId : ID!){
+  addProjectMember(projectId: $projectId){
+    project {
+      _id
+      projectTeam 
+      
+    }
+  }
+}
+`;
