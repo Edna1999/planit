@@ -5,20 +5,22 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find({});
+      return await User.find({}).populate('projects').populate({
+        path: 'projects',
+        populate: 'tasks'
+      });
+    },
+    tasks: async () => {
+      return await Task.find({}).populate('users');
+    },
+    projects: async () => {
+      return await Project.find({}).populate('users').populate('tasks');
     },
     user: async (parent, { email }) => {
       return User.findOne({ email });
     },
-    tasks: async (parent, { email }) => {
-      const params = email ? { email } : {};
-      return Task.find(params).sort({ createdAt: -1 });
-    },
     task: async (parent, { taskId }) => {
       return Task.findOne({ _id: taskId });
-    },
-    projects: async () => {
-      return Project.find({}).sort({ createdAt: -1 }).populate('users');
     },
     project: async (parent, { projectId }) => {
       return Project.findOne({ _id: projectId });
