@@ -8,12 +8,17 @@ const typeDefs = gql`
     lastName: String
     email: String
     password: String
+    tasks: [Task]
+    projects: [Project]
   }
 
   type Project {
     _id: ID
     projectName: String
     projectDescription: String
+    startDate: Date
+    endDate: Date
+    isComplete: Boolean
     tasks: [Task]
     users: [User]
   }
@@ -22,6 +27,8 @@ const typeDefs = gql`
     _id: ID
     taskName: String
     taskDescription: String
+    startDate: Date
+    endDate: Date
     users: [User]
   }
 
@@ -32,10 +39,10 @@ const typeDefs = gql`
 
   type Query {
     users: [User]
+    projects: [Project]
+    tasks: [Task]
     user(email: String!): User
     project(projectId: String!): Project
-    projects: [Project]
-    tasks(email: String!): [Task]
     task(taskId: ID!): Task
     me: User
   }
