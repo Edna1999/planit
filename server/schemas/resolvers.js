@@ -16,26 +16,32 @@ const resolvers = {
     projects: async () => {
       return await Project.find({}).populate('users').populate('tasks');
     },
-    user: async (parent, { email }) => {
-      return User.findOne({ email });
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('projects').populate({
+        path: 'projects',
+        populate: 'tasks'
+      });
     },
     task: async (parent, { taskId }) => {
-      return Task.findOne({ _id: taskId });
+      return Task.findOne({ _id: taskId }).populate('users');
     },
     project: async (parent, { projectId }) => {
-      return Project.findOne({ _id: projectId });
+      return Project.findOne({ _id: projectId }).populate('users').populate('tasks');
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('projects').populate('tasks');
+        return User.findOne({ _id: context.user._id }).populate('projects').populate({
+          path: 'projects',
+          populate: 'tasks'
+        });
       }
       throw new AuthenticationError('You need to be logged in!');
     },
   },
 
   Mutation: {
-    addUser: async (parent, { firstName, lastName, email, password }) => {
-      const user = await User.create({ firstName, lastName, email, password });
+    addUser: async (parent, { username, firstName, lastName, email, password }) => {
+      const user = await User.create({ username, firstName, lastName, email, password });
       const token = signToken(user);
       return { token, user };
     },
