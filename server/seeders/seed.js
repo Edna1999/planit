@@ -1,67 +1,31 @@
 const db = require('../config/connection');
 const { User, Project, Task } = require('../models');
-// const userSeeds = require('./userSeeds.json');
-// const projectSeeds = require('./projectSeed.json');
-// const taskSeeds = require('./taskSeed.json');
-
-const { ObjectId } = require('mongodb');
-
-let seedData = [
-  {
-    project: {
-      projectName: 'Final Project Grading',
-      projectDescription: "Working with Mike to grade the course's final projects",
-      users: []
-    },
-    users: [
-      {
-        username: 'eweiss',
-        firstName: 'Eric',
-        lastName: 'Weiss',
-        email: 'eweiss@gmail.com',
-        password: 'password01'
-      }
-    ]
-  },
-  {
-    project: {
-      projectName: 'My Other Project',
-      projectDescription: "Working with Mike to grade the course's final projects",
-      users: []
-    },
-    users: [
-      {
-        username: 'mkotte',
-        firstName: 'Michael',
-        lastName: 'Kotte',
-        email: 'mkotte@gmail.com',
-        password: 'password02'
-      }
-    ]
-  }
-];
-
-seedData = seedData.map(data => ({
-  ...data,
-  project: {
-    ...data.project,
-    _id: new ObjectId()
-  },
-  users: data.users.map(user => ({
-    ...user,
-    _id: new ObjectId()
-  }))
-}));
+const userSeeds = require('./userSeeds.json');
+const projectSeeds = require('./projectSeed.json');
+const taskSeeds = require('./taskSeed.json');
 
 db.once('open', async () => {
   try {
+    // clean database
     await Project.deleteMany({});
     await User.deleteMany({});
     await Task.deleteMany({})
 
-    for (const data of seedData) {
-      await Project.create(data.project);
-      await User.create(data.users);
+    // bulk create each model
+    const users = await User.insertMany(userSeeds);
+    const projects = await Project.insertMany(projectSeeds);
+    const tasks = await Task.insertMany(taskSeeds);
+
+    for (newProject of projects) {
+      const tempUser = users[Math.floor(Math.random() * users.length)];
+      const tempTask = tasks[Math.floor(Math.random() * tasks.length)];
+      newProject.tasks.push(tempTask._id);
+      newProject.users.push(tempUser._id);
+      await newProject.save();
+
+      tempUser.projects.push(newProject._id);
+      await tempUser.save();
+
     }
 
   } catch (err) {

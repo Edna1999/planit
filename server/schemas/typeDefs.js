@@ -16,8 +16,8 @@ const typeDefs = gql`
     _id: ID
     projectName: String
     projectDescription: String
-    startDate: Date
-    endDate: Date
+    startDate: String
+    endDate: String
     isComplete: Boolean
     tasks: [Task]
     users: [User]
@@ -27,8 +27,8 @@ const typeDefs = gql`
     _id: ID
     taskName: String
     taskDescription: String
-    startDate: Date
-    endDate: Date
+    startDate: String
+    endDate: String
     users: [User]
   }
 
