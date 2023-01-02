@@ -27,7 +27,7 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_TASK = gql`
-mutation addTask($taskName: String!, $taskDescription: String!) {
+mutation addTask($taskName: String!, $taskDescription: String) {
   addTask(taskName: $taskName, taskDescription: $taskDescription) {
     _id
     taskName

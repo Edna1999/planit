@@ -1,6 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Task, Project } = require('../models');
 const { signToken } = require('../utils/auth');
+const { ObjectId } = require('mongoose');
 
 const resolvers = {
   Query: {
@@ -17,20 +18,20 @@ const resolvers = {
       return await Project.find({}).populate('users').populate('tasks');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('projects').populate({
+      return await User.findOne({ username }).populate('projects').populate({
         path: 'projects',
         populate: 'tasks'
       });
     },
     task: async (parent, { taskId }) => {
-      return Task.findOne({ _id: taskId }).populate('users');
+      return await Task.findOne({ _id: taskId }).populate('users');
     },
     project: async (parent, { projectId }) => {
-      return Project.findOne({ _id: projectId }).populate('users').populate('tasks');
+      return await Project.findOne({ _id: projectId }).populate('users').populate('tasks');
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('projects').populate({
+        return await User.findOne({ _id: context.user._id }).populate('projects').populate({
           path: 'projects',
           populate: 'tasks'
         });
@@ -64,19 +65,22 @@ const resolvers = {
       return { token, user };
     },
 
-    addTask: async (parent, { taskName, taskDescription }, context) => {
+    addTask: async (parent, { projectId, taskName }, context) => {
       if (context.user) {
         const task = await Task.create({
-          taskDescription,
           taskName,
         });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { tasks: task._id } }
+        return await Project.findOneAndUpdate(
+          {_id: projectId},
+          {
+            $addToSet: {tasks: task},
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
         );
-
-        return task;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -85,15 +89,12 @@ const resolvers = {
       if (context.user) {
         const task = await Task.findOneAndDelete({
           _id: taskId,
-          users: context.user.firstName,
         });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
+        return await Project.findOneAndUpdate(
+          { _id: taskId},
           { $pull: { tasks: task._id } }
         );
-
-        return task;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
