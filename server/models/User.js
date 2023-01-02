@@ -25,18 +25,6 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  projects: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Project',
-    },
-  ],
-  tasks: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Task',
-    },
-  ],
 }, {
   virtuals: {
     fullName: {

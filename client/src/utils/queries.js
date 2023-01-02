@@ -7,17 +7,6 @@ export const QUERY_USER = gql`
       firstName
       lastName
       email
-      projects {
-        projectId
-        projectName
-        startDate
-        endDate
-      }
-      tasks {
-        taskId
-        taskName
-        TaskDescription
-      }
     }
   }
 `;
@@ -55,17 +44,6 @@ export const QUERY_ME = gql`
       firstName
       lastName
       email
-      projects {
-        projectId
-        projectName
-        startDate
-        endDate
-      }
-      tasks {
-        taskId
-        taskName
-        TaskDescription
-      }
     }
   }
 `;
