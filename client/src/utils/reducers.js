@@ -11,7 +11,11 @@ import {
   PROJECT_IS_NOT_COMPLETE,
   UPDATE_PROJECT,
   UPDATE_CURRENT_PROJECT,
-  ADD_PROJECT
+  ADD_PROJECT,
+  UPDATE_CURRENT_TASK,
+  UPDATE_TASK,
+  ADD_TASK,
+  DELETE_TASK
 } from "./actions"
 
 export const reducer = (state, action) => {
@@ -141,6 +145,33 @@ export const reducer = (state, action) => {
       return {
         ...state,
         projects: [...state.projects, action.projects]
+      }
+      case ADD_TASK:
+        return {
+          ...state, 
+          tasks: [...state.tasks, action.tasks]
+        }
+      case UPDATE_CURRENT_TASK:
+         return {
+            ...state,
+            currentTask: action.currentTask
+          } 
+      case UPDATE_TASK:
+        return {
+              ...state,
+              currentTask: action.currentTask
+            }
+     case DELETE_TASK:
+        let selectedTask = state.tasks.filter((task) => {
+        return task._id === action._id
+       })
+      if (!selectedTask) {
+         console.log('Invalid task chosen')
+          return;
+       }
+        return {
+          ...state,
+          tasks: [...state.tasks]
       }
     default:
       return state;
