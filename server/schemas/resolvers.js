@@ -23,7 +23,7 @@ const resolvers = {
       });
     },
     task: async (parent, { taskId }) => {
-      return Task.findOne({ _id: taskId });
+      return Task.findOne({ _id: taskId }).populate('users');
     },
     project: async (parent, { projectId }) => {
       return Project.findOne({ _id: projectId });
