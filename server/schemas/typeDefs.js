@@ -3,18 +3,22 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type User {
     _id: ID
+    username: String
     firstName: String
     lastName: String
     email: String
     password: String
-    projects: [Project]
     tasks: [Task]
+    projects: [Project]
   }
 
   type Project {
     _id: ID
     projectName: String
     projectDescription: String
+    startDate: String
+    endDate: String
+    isComplete: Boolean
     tasks: [Task]
     users: [User]
   }
@@ -23,6 +27,8 @@ const typeDefs = gql`
     _id: ID
     taskName: String
     taskDescription: String
+    startDate: String
+    endDate: String
     users: [User]
   }
 
@@ -33,10 +39,10 @@ const typeDefs = gql`
 
   type Query {
     users: [User]
-    user(username: String!): User
+    projects: [Project]
+    tasks: [Task]
+    user(email: String!): User
     project(projectId: String!): Project
-    projects(email: String!): [Project]
-    tasks(email: String!): [Task]
     task(taskId: ID!): Task
     me: User
   }
