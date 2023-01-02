@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import Auth from '../../utils/auth';
 import { QUERY_TASKS } from '../../utils/queries';
-import { useTaskContext } from '../../utils/GlobalState';
+import { useTaskContext } from '../../utils/taskContext';
 import { UPDATE_CURRENT_TASK, UPDATE_TASK } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 
