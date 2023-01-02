@@ -19,20 +19,6 @@ export const QUERY_PROJECTS = gql`
       projectDescription
       startDate
       endDate
-      tasks {
-        _id
-        taskName
-        taskDescription
-        startDate
-        endDate
-        taskAssignee
-      }
-      projectTeam {
-        _id
-        firstName
-        lastName
-        email
-      }
     }
   }
 `

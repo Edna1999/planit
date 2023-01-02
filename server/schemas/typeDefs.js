@@ -34,7 +34,7 @@ const typeDefs = gql`
     users: [User]
     user(email: String!): User
     project(projectId: String!): Project
-    projects(email: String!): [Project]
+    projects: [Project]
     tasks(email: String!): [Task]
     task(taskId: ID!): Task
     me: User

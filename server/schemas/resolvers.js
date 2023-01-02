@@ -17,9 +17,8 @@ const resolvers = {
     task: async (parent, { taskId }) => {
       return Task.findOne({ _id: taskId });
     },
-    projects: async (parent, { email }) => {
-      const params = email ? { email } : {};
-      return Project.find(params).sort({ createdAt: -1 });
+    projects: async () => {
+      return Project.find({}).sort({ createdAt: -1 }).populate('users');
     },
     project: async (parent, { projectId }) => {
       return Project.findOne({ _id: projectId });

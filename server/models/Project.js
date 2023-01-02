@@ -27,7 +27,7 @@ const projectSchema = new Schema({
       ref: 'Task',
     },
   ],
-  projectTeam: [
+  users: [
     {
       type: Schema.Types.ObjectId,
       ref: 'User',
