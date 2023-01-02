@@ -12,17 +12,17 @@ db.once('open', async () => {
 
     await User.create(userSeeds);
 
-    for (let i = 0; i < projectSeeds.length; i++) {
-      const { _id, users } = await Project.create(projectSeeds[i]);
-      const user = await User.findOneAndUpdate(
-        { users: users },
-        {
-          $addToSet: {
-            projects: _id,
-          },
-        }
-      );
-    }
+    // for (let i = 0; i < projectSeeds.length; i++) {
+    //   const { _id, users } = await Project.create(projectSeeds[i]);
+    //   const user = await User.findOneAndUpdate(
+    //     { users: users },
+    //     {
+    //       $addToSet: {
+    //         projects: _id,
+    //       },
+    //     }
+    //   );
+    // }
   } catch (err) {
     console.error(err);
     process.exit(1);
