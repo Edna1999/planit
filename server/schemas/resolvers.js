@@ -16,8 +16,11 @@ const resolvers = {
     projects: async () => {
       return await Project.find({}).populate('users').populate('tasks');
     },
-    user: async (parent, { email }) => {
-      return User.findOne({ email });
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('projects').populate({
+        path: 'projects',
+        populate: 'tasks'
+      });
     },
     task: async (parent, { taskId }) => {
       return Task.findOne({ _id: taskId });
