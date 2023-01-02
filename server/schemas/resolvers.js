@@ -26,11 +26,14 @@ const resolvers = {
       return Task.findOne({ _id: taskId }).populate('users');
     },
     project: async (parent, { projectId }) => {
-      return Project.findOne({ _id: projectId });
+      return Project.findOne({ _id: projectId }).populate('users').populate('tasks');
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('projects').populate('tasks');
+        return User.findOne({ _id: context.user._id }).populate('projects').populate({
+          path: 'projects',
+          populate: 'tasks'
+        });
       }
       throw new AuthenticationError('You need to be logged in!');
     },
