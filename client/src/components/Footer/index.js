@@ -17,21 +17,12 @@ const Footer = () => {
             &larr; Go Back
           </button>
         )}
-        <h4>
-          Made with{' '}
-          <span
-            className="emoji"
-            role="img"
-            aria-label="heart"
-            aria-hidden="false"
-          >
-            ❤️
-          </span>{' '}
-          by the Tech Thoughts team.
-        </h4>
+        <h4 id='heading'>Created by:</h4>
+        <a href='https://github.com/AndrewKamSki'>Andy Kaminski</a>,
+           <a href='https://github.com/clbutl'>  Cannon Butler </a>&
+           <a href='https://github.com/Edna1999'>  Edna Omadjambe</a>
       </div>
     </footer>
   );
-};
-
+}
 export default Footer;
