@@ -2,13 +2,11 @@
   {
     "projectName": "Final Project Grading",
     "projectDescription": "Working with Mike to grade the course's final projects",
-    "isComplete": false,
-    "users": "eweiss"
+    "isComplete": false
   },
   {
     "projectName": "Opening Up Breakout Rooms",
     "projectDescription": "Open a room for students to meet for their projects",
-    "isComplete": false,
-    "users": "mkotte"
+    "isComplete": false
   }
 ]
