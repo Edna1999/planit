@@ -33,7 +33,7 @@ const typeDefs = gql`
   }
 
   type Auth {
-    token: ID!
+    token: ID
     user: User
   }
 
@@ -55,8 +55,7 @@ const typeDefs = gql`
     updateTask(taskId: ID!, taskName: String, taskDescription: String, startDate: String, endDate: String): Task
     addProject(projectName: String!, projectDescription: String!): Project
     removeProject(projectId: ID!): Project
-    updateProject(projectId: ID!, projectName: String!, ProjectDescription: String!): Project
-    addProjectMember(projectId: ID!): Project
+    updateProject(projectId: ID!, projectName: String, projectDescription: String, startDate: String, endDate: String, isComplete: Boolean): Project
   }
 `;
 
