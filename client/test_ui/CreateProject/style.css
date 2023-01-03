@@ -82,6 +82,7 @@ header {
   margin-top: 0;
   font-size: 35px;
   width: fit-content;
+  margin: 0;
 } .team-members {
   margin-bottom: 0;
 } .team-inputs {
@@ -101,7 +102,6 @@ header {
   cursor: pointer;
 } .append-div {
   display: flex;
-  justify-content: left;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
 }

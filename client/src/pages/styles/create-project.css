@@ -35,6 +35,9 @@
   margin-top: 0;
   font-size: 35px;
   width: fit-content;
+  margin: 0;
+  user-select: none;
+  float: right;
 } .team-members {
   margin-bottom: 0;
 } .team-inputs {
@@ -54,7 +57,7 @@
   cursor: pointer;
 } .append-div {
   display: flex;
-  justify-content: left;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: row;
   flex-wrap: wrap;
 }
