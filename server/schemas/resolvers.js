@@ -125,7 +125,11 @@ const resolvers = {
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { projects: project._id } }
+          { $addToSet: { projects: project._id } },
+          {
+            new: true,
+            runValidators: true,
+          }
         );
 
         return project;
@@ -137,7 +141,7 @@ const resolvers = {
       if (context.user) {
         const project = await Project.findOneAndDelete({
           _id: projectId,
-          users: context.user.firstName,
+          users: { $in: [context.user._id] },
         });
 
         await User.findOneAndUpdate(
@@ -150,27 +154,28 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    updateProject: async (parent, {projectName, projectDescription }, context) => {
-    if(context.user){
+    updateProject: async (parent, { projectId, projectName, projectDescription, startDate, endDate, isComplete }, context) => {
+      if (context.user) {
         const project = await Project.findOneAndUpdate(
-         {_id: context.user._id},
-         { $addToSet: {
-          projects: projectName, projectDescription
-        } }, 
-         
-          
-        )
+          {
+            _id: projectId,
+            users: { $in: [context.user._id] }
+          },
+          { $set: {
+            projectName,
+            projectDescription,
+            startDate,
+            endDate,
+            isComplete
+            }
+          }, 
+          { new: true }
+        );
 
-        return project
-        }
-      },
-    
-    
-        
-
-      
-       
-    }
+        return project;
+      }
+    },   
+  }
 };
 
 module.exports = resolvers;
