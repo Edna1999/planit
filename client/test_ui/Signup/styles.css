@@ -54,6 +54,7 @@ header {
   margin: 0 25px;
 } .input-form {
   display: flex;
+  /* flex-direction: column; */
 } .form-inputs {
   margin: 0;
   font-size: 35px;
@@ -80,7 +81,6 @@ header {
 } .signup-h2 a {
   text-decoration: none;
   color: #0000EE;
-} .btn-section {
-  display: flex;
-  justify-content: center;
+} #submit-btn {
+  margin-top: 80px;
 }

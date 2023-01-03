@@ -1,0 +1,44 @@
+.hidden {
+  display: none;
+}
+
+/* Side Nav */
+nav {
+  background-color: white;
+  width: 450px;
+  float: left;
+  border-right: 1px solid black; 
+  min-height: 1000px;
+  user-select: none;
+} nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+} nav li {
+  margin: 0;
+} nav h1 {
+  display: block;
+  text-decoration: none;
+  color: black;
+  margin: 15px 0;
+  padding: 5px 20px;
+  font-size: 40px;
+  font-weight: bold;
+  /* transition-duration: 300ms; */
+} nav h1:hover {
+  cursor: pointer;
+  /* transition-duration: 300ms; */
+} nav span {
+  float: right;
+  font-weight: bolder;
+} nav h3 {
+  display: block;
+  text-decoration: none;
+  color: black;
+  margin: 15px 0;
+  padding: 5px 30px;
+  font-size: 30px;
+  font-weight: bold;
+} nav h3:hover {
+  cursor: pointer;
+}
