@@ -6,8 +6,7 @@ export const LOGIN_USER = gql`
       token
       user {
         _id
-        firstName
-        lastName
+        username
       }
     }
   }
@@ -27,14 +26,21 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_TASK = gql`
-mutation addTask($taskName: String!, $taskDescription: String) {
-  addTask(taskName: $taskName, taskDescription: $taskDescription) {
+mutation addTask($projectId: String!, $taskName: String!) {
+  addTask(projectId: $projectId, taskName: $taskName) {
     _id
-    taskName
-    taskDescription
-    users
-    createdAt
-  
+    projectName
+    task {
+      _id
+      taskName
+      taskDescription
+      createdAt
+      users {
+        _id
+        username
+      }
+      
+    }
   }
 }
 `;
@@ -42,56 +48,35 @@ mutation addTask($taskName: String!, $taskDescription: String) {
 export const REMOVE_TASK = gql`
 mutation removeTask($taskId: ID!) {
   removeTask(taskId: $taskId) {
-    _id
-    taskName
-    taskDescription
-    users
-    createdAt
+    taskId
+  
   }
 }
 `;
 
-// export const ADD_PROJECT = gql`
-// mutation addProject($projectDescription: String!) {
-//   addTask(projectDescription: $projectDescription) {
-//     _id
-//     projectName
-//     projectDescription
-//     projectTeam
-//     createdAt
-//   }
-// }
-// `;
-
-
-// export const REMOVE_PROJECT = gql`
-// mutation removeProject($projectId: ID!) {
-//   removeProjectk(projectId: $projectId) {
-//     _id
-//     projectName
-//     projectDescription
-//     projectTeam
-//     createdAt
-//   }
-// }
-// `;
-
-// export const UPDATE_PROJECT = gql`
-// mutation updateProject($projectName: String!, $projectDescription: String!){
-//   updateProject( projectName: $projectName, projectDescription: $projectDescription) {
-//     project {
+//  export const ADD_PROJECT = gql`
+//     mutation addProject($projectName: String!, $projectDescription: String!, $startDate: String!, $endDate: String!) {
+//     addProject(projectName: $projectName, projectDescription: $projectDescription, startDate: $startDate, endDate: $endDate) {
+//      _id
+//      projectName
+//      projectDescription
+//      startDate
+//      endDate
+//      users {
 //       _id
-//       projectName
-//       projectDescription
-
+//       username
+//      }
+//     tasks {
+//       _id
+//       taskName
 //     }
+//     createdAt
+//    }
+//  }
+//  `;
 
-//   }
-// }
-// `;
 
-
-// export const UPDATE_TASK = gql`
+//  export const UPDATE_TASK = gql`
 // mutation updateTask($taskName: String!, $taskDescription: String!){
 //   updateTask( taskName: $taskName, taskDescription: $taskDescription) {
 //     project {
@@ -103,6 +88,42 @@ mutation removeTask($taskId: ID!) {
 //   }
 // }
 // `;
+
+
+// export const REMOVE_PROJECT = gql`
+// mutation removeProject($projectId: ID!) {
+//   removeProject(projectId: $projectId) {
+//     _id
+//     projectName
+//     projectDescription
+//     startDate
+//     endDate
+//     users
+//     tasks
+//   }
+// }
+// `;
+
+// export const UPDATE_PROJECT = gql`
+// mutation updateProject($projectName: String!, $projectDescription: String!){
+//   updateProject( projectName: $projectName, projectDescription: $projectDescription) {
+//     project {
+//       _id
+//       projectName
+//       projectDescription
+//     startDate
+//     endDate
+//     users
+//     tasks
+
+//     }
+
+//   }
+// }
+// `;
+
+
+
 
 
 
