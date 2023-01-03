@@ -40,7 +40,7 @@ const Home = () => {
             <h1 id="dashboard-nav">🏠 Dashboard</h1>
           </li>
           <li>
-            <h1 onClick={handleToggle} id="projects-nav">🏗️ Projects<span id="projects-span">►</span></h1>
+            <h1 onClick={handleToggle} id="projects-nav">🏗️ Projects<span id="projects-span">{isHidden ? "►" : "▼"}</span></h1>
           </li>
           <li id="projects-drop" className={`app ${isHidden ? "hidden" : ""}`}>
             <h3>No Projects Found...</h3>
