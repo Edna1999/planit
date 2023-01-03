@@ -54,39 +54,17 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_TASKS = gql`
-  query getTasks {
+  query tasks {
     tasks {
       _id
       taskName
       taskDescription
-      taskAssignee {
-        userId
-        firstName
-        lastName
+      startDate
+      endDate
+      users {
+        _id
+        username
       }
-      createdAt
     }
   }
 `;
-
-// export const QUERY_PROJECTS = gql`
-//   query getprojects {
-//     projects {
-//       _id
-//       projectName
-//       projectDescription
-//       projectTeam {
-//        userId
-//        firstName 
-//        lastName
-//       }
-//       tasks{
-//        taskId
-//        taskName
-//        taskDescription
-
-//       }
-//       createdAt
-//     }
-//   }
-// `;
