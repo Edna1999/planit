@@ -1,40 +1,48 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Task, Project } = require('../models');
 const { signToken } = require('../utils/auth');
+const { ObjectId } = require('mongoose');
 
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('projects').populate('tasks');
+      return await User.find({}).populate('projects').populate({
+        path: 'projects',
+        populate: 'tasks'
+      });
     },
-    user: async (parent, { email }) => {
-      return User.findOne({ email }).populate('projects').populate('tasks');
+    tasks: async () => {
+      return await Task.find({}).populate('users');
     },
-    tasks: async (parent, { email }) => {
-      const params = email ? { email } : {};
-      return Task.find(params).sort({ createdAt: -1 });
+    projects: async () => {
+      return await Project.find({}).populate('users').populate('tasks');
+    },
+    user: async (parent, { username }) => {
+      return await User.findOne({ username }).populate('projects').populate({
+        path: 'projects',
+        populate: 'tasks'
+      });
     },
     task: async (parent, { taskId }) => {
-      return Task.findOne({ _id: taskId });
-    },
-    projects: async (parent, { email }) => {
-      const params = email ? { email } : {};
-      return Project.find(params).sort({ createdAt: -1 });
+      return await Task.findOne({ _id: taskId }).populate('users');
     },
     project: async (parent, { projectId }) => {
-      return Project.findOne({ _id: projectId });
+      return await Project.findOne({ _id: projectId }).populate('users').populate('tasks');
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('projects').populate('tasks');
+        return await User.findOne({ _id: context.user._id }).populate('projects').populate({
+          path: 'projects',
+          populate: 'tasks'
+        });
       }
       throw new AuthenticationError('You need to be logged in!');
     },
   },
 
   Mutation: {
-    addUser: async (parent, { firstName, lastName, email, password }) => {
-      const user = await User.create({ firstName, lastName, email, password });
+    addUser: async (parent, { username, firstName, lastName, email, password }) => {
+      const user = await User.create({ username, firstName, lastName, email, password });
       const token = signToken(user);
       return { token, user };
     },
@@ -57,19 +65,22 @@ const resolvers = {
       return { token, user };
     },
 
-    addTask: async (parent, { taskName, taskDescription }, context) => {
+    addTask: async (parent, { projectId, taskName }, context) => {
       if (context.user) {
         const task = await Task.create({
-          taskDescription,
           taskName,
         });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { tasks: task._id } }
+        return await Project.findOneAndUpdate(
+          {_id: projectId},
+          {
+            $addToSet: {tasks: task},
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
         );
-
-        return task;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -78,15 +89,12 @@ const resolvers = {
       if (context.user) {
         const task = await Task.findOneAndDelete({
           _id: taskId,
-          users: context.user.firstName,
         });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
+        return await Project.findOneAndUpdate(
+          { _id: taskId},
           { $pull: { tasks: task._id } }
         );
-
-        return task;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -125,40 +133,34 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    updateProject: async (parent, {projectName, projectDescription, projectTeam }, context) => {
+    updateProject: async (parent, {projectName, projectDescription }, context) => {
     if(context.user){
         const project = await Project.findOneAndUpdate(
          {_id: context.user._id},
          { $addToSet: {
-          projects: projectName, projectDescription, projectTeam
+          projects: projectName, projectDescription
         } }, 
-        {$pull: {projects: projectTeam}}
          
           
         )
 
         return project
         }
-        throw new AuthenticationError('You need to be logged in!');
       },
     
     
         
-      updateTask: async (parent, { taskName, taskDescription, users}, context) => {
+      updateTask: async (parent, { taskName, taskDescription}, context) => {
         if(context.user){
            const task = await Task.findOneAndUpdate(
            {_id: context.user._id},
-            { $addToSet: {tasks: taskName, taskDescription, users} },
-            {$pull: { users }}
+            { $addToSet: {tasks: taskName, taskDescription} } 
                   
           )
         
            return task
             }
-            throw new AuthenticationError('You need to be logged in!');
-       }, 
-       
-       
+       },  
       
        
     }

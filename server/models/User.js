@@ -2,16 +2,20 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
-  firstName: {
+  username: {
     type: String,
     required: true,
     unique: true,
     trim: true,
   },
+  firstName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   lastName: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
   },
   email: {
@@ -28,14 +32,8 @@ const userSchema = new Schema({
   projects: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Project',
-    },
-  ],
-  tasks: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Task',
-    },
+      ref: 'Project'
+    }
   ]
 }, {
   virtuals: {

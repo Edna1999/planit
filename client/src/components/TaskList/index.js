@@ -1,54 +1,59 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useQuery } from '@apollo/client';
+import Auth from '../../utils/auth';
+import { QUERY_TASKS } from '../../utils/queries';
+import { useTaskContext } from '../../utils/taskContext';
+import { UPDATE_CURRENT_TASK, UPDATE_TASK } from '../../utils/actions';
+import { idbPromise } from '../../utils/helpers';
 
-const TaskList = ({
-  tasks,
-  taskName,
-  showTaskname= true,
-  showUsername = true,
-}) => {
-  if (!tasks.length) {
-    return <h3>No Tasks Yet</h3>;
-  }
+
+
+const Tasks = () => {
+  const [state, dispatch] = useTaskContext();
+  const { tasks } = state;
+  const { loading, data: taskData } = useQuery(QUERY_TASKS);
+
+  useEffect(() => {
+    if (taskData) {
+      dispatch({
+        type: UPDATE_TASK,
+        tasks: taskData
+      });
+      taskData.tasks.forEach((task) => {
+        idbPromise('tasks', 'put', task);
+      });
+    } else if (!loading) {
+      idbPromise('tasks', 'get').then((task) => {
+        dispatch({
+          type: UPDATE_TASK,
+          tasks: task
+        })
+      })
+    }
+  }, [taskData, loading, dispatch]);
+
+  const handleProjectClick = (id) => {
+    dispatch({
+      type: UPDATE_CURRENT_TASK,
+      currentTask: id
+    });
+  };
 
   return (
     <div>
-      {showTaskname && <h3>{taskName}</h3>}
-      {tasks &&
-        tasks.map((task) => (
-          <div key={task._id} className="card mb-3">
-            <h4 className="card-header bg-primary text-light p-2 m-0">
-              {showUsername ? ( 
-                <Link
-                  className="text-light"
-                  to={`/profiles/${task.taskAssignee}`}
-                >
-                  {task.taskAssignee} <br />
-                  <span style={{ fontSize: '1rem' }}>
-                    had this task on {task.createdAt}
-                  </span>
-                </Link>
-              ) : (
-                <>
-                  <span style={{ fontSize: '1rem' }}>
-                    You had this task on {task.createdAt}
-                  </span>
-                </>
-              )}
-            </h4>
-            <div className="card-body bg-light p-2">
-              <p>{task.taskDescription}</p>
-            </div>
-            <Link
-              className="btn btn-primary btn-block btn-squared"
-              to={`/thoughts/${task._id}`}
-            >
-              Join the discussion on this task.
-            </Link>
-          </div>
-        ))}
+      <h2>Pick Task</h2>
+      {tasks.map((item) => (
+        <button
+        key={item._id}
+        onClick={() => {
+          handleProjectClick(item._id)
+        }}
+        >
+          {item.taskName}
+        </button>
+      ))}
     </div>
-  );
-};
+  )
+}
 
-export default TaskList;
+export default Tasks; 
