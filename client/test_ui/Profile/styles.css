@@ -1,0 +1,100 @@
+html {
+  margin: 0;
+  padding: 0;
+} body {
+  margin: 0;
+  /* background-color: aliceblue; */
+} .hidden {
+  display: none;
+}
+
+/* Top Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  align-items: center;
+  user-select: none;
+  background-color: white;
+} .list-nav ul {
+  list-style: none;
+  display: flex;
+  padding: 0%;
+} .list-nav li {
+  font-size: 50px;
+  font-weight: 800;
+  margin-right: 40px;
+} .list-nav a {
+  color: black;
+  transition-duration: 300ms;
+  text-decoration: none;
+} .list-nav a:hover {
+  cursor: pointer;
+  color: blueviolet;
+  transition-duration: 300ms;
+} #navigation-logo {
+  font-size: 50px;
+  font-weight: 800;
+  margin-left: 40px;
+} #navigation-logo:hover {
+  cursor: pointer;
+} #navigation-logo a {
+  color: black;
+  text-decoration: none;
+} 
+
+.main-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Side Nav */
+.left-section {
+  background-color: white;
+  width: 350px;
+  margin: 45px 0;
+  border: 1px solid black; 
+  min-height: 500px;
+  user-select: none;
+  font-size: 35px;
+  text-align: center;
+} .left-section ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+} .left-section li {
+  border: 1px solid black;
+  border-radius: 40px;
+  list-style: none;
+  margin: 20px 20px;
+  padding: 5px;
+} .left-section li:hover {
+  cursor: pointer;
+}
+
+/* Right Section */
+.right-section {
+  margin: 25px 0;
+  width: 1100px;
+} .right-section h1 {
+  font-size: 55px;
+  text-align: center;
+} .right-section h3 {
+  font-size: 35px;
+  text-align: left;
+  margin: 35px 0 0 50px
+} .right-section span {
+  font-weight: lighter;
+} .active-projects li {
+  font-size: 30px;
+  margin: 10px 0;
+  font-weight: bold;
+} .active-projects {
+  margin-left: 80px;
+  padding: 0;
+} .active-projects a {
+  text-decoration: none;
+  color: black;
+} .active-projects a:hover {
+  cursor: pointer;
+} 
