@@ -1,0 +1,49 @@
+/* Main Section */
+.main-div {
+  margin: 15px 15px 0 465px;
+  min-height: 985px;
+  border: 1px solid black;
+  border-bottom: none;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+  background-color: white;
+} .sections-div {
+  display: flex;
+  justify-content: space-around;
+} 
+
+/* Main Left Section */
+.main-left-section {
+  width: 45%;
+  border: 1px solid black;
+  border-radius: 10px;
+} .main-left-section h1 {
+  font-size: 45px;
+  text-align: center;
+  margin: 10px 0 15px 0;
+} .no-tasks {
+  font-size: 30px;
+  text-align: center;
+}
+
+/* Main Right Section */
+.main-right-section {
+  width: 45%;
+  border: 1px solid black;
+  border-radius: 10px;
+} .main-right-section h1 {
+  font-size: 45px;
+  text-align: center;
+  margin: 10px 0 15px 0;
+} 
+
+
+
+
+
+#dashboard-title {
+  text-align: center;
+  font-size: 65px;
+  margin: 10px 0 30px 0;
+  font-weight: bolder;
+}

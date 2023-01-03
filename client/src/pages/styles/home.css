@@ -1,6 +1,9 @@
 .hidden {
   display: none;
-}
+} .body {
+  margin: 0;
+  background-color: aliceblue;
+} 
 
 /* Side Nav */
 nav {
@@ -10,6 +13,7 @@ nav {
   border-right: 1px solid black; 
   min-height: 1000px;
   user-select: none;
+  margin-top: -15px;
 } nav ul {
   list-style: none;
   margin: 0;
