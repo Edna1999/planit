@@ -28,6 +28,15 @@ export const QUERY_PROJECTS = gql`
       projectDescription
       startDate
       endDate
+      isComplete
+      tasks {
+        _id
+        taskName
+      }
+      user{
+        _id
+        username
+      }
     }
   }
 `
@@ -36,6 +45,7 @@ export const QUERY_ME = gql`
   query me {
     me {
       _id
+      username
       firstName
       lastName
       email

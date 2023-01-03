@@ -39,17 +39,17 @@ mutation addTask($taskName: String!, $taskDescription: String) {
 }
 `;
 
-// export const REMOVE_TASK = gql`
-// mutation removeTask($taskId: ID!) {
-//   removeTask(taskId: $taskId) {
-//     _id
-//     taskName
-//     taskDescription
-//     users
-//     createdAt
-//   }
-// }
-// `;
+export const REMOVE_TASK = gql`
+mutation removeTask($taskId: ID!) {
+  removeTask(taskId: $taskId) {
+    _id
+    taskName
+    taskDescription
+    users
+    createdAt
+  }
+}
+`;
 
 // export const ADD_PROJECT = gql`
 // mutation addProject($projectDescription: String!) {
