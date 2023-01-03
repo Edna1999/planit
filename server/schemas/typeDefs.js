@@ -52,12 +52,11 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addTask(projectId: ID!, taskName: String!): Task
     removeTask(taskId: ID!): Task
+    updateTask(taskId: ID!, taskName: String, taskDescription: String, startDate: String, endDate: String): Task
     addProject(projectName: String!, projectDescription: String!): Project
     removeProject(projectId: ID!): Project
     updateProject(projectId: ID!, projectName: String!, ProjectDescription: String!): Project
-    updateTask(taskId: ID!, taskName: String!, taskDescription: String!): Task
     addProjectMember(projectId: ID!): Project
-
   }
 `;
 

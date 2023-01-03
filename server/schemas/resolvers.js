@@ -99,6 +99,23 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
+    updateTask: async (parent, { taskId, taskName, taskDescription, startDate, endDate }, context) => {
+      if(context.user){
+        return await Task.findOneAndUpdate(
+          { _id: taskId },
+          { 
+            $set: {
+              taskName,
+              taskDescription,
+              startDate,
+              endDate
+            }
+          },
+          { new: true }  
+        );
+      }
+    },  
+
     addProject: async (parent, { projectName, projectDescription }, context) => {
       if (context.user) {
         const project = await Project.create({
@@ -150,17 +167,7 @@ const resolvers = {
     
     
         
-      updateTask: async (parent, { taskName, taskDescription}, context) => {
-        if(context.user){
-           const task = await Task.findOneAndUpdate(
-           {_id: context.user._id},
-            { $addToSet: {tasks: taskName, taskDescription} } 
-                  
-          )
-        
-           return task
-            }
-       },  
+
       
        
     }
