@@ -1,36 +1,63 @@
-import React from 'react';
+import React, { useState } from "react";
 import { useQuery } from '@apollo/client';
 
-import ThoughtList from '../components/TaskList';
-import ThoughtForm from '../components/TaskForm';
+import './styles/home.css'
 
-// import { QUERY_THOUGHTS } from '../utils/queries';
+import { QUERY_ME } from '../utils/queries'
+
+// const projectElement = document.getElementById('projects-nav')
+// const projectSpan = document.getElementById('projects-span')
+// const projectDrop = document.getElementById('projects-drop')
+
+
+const dropDownActivate = () => {
+  if (this.classList.contains('hidden')) {
+    this.span.classList.remove('hidden')
+    this.span.textContent = '▼'
+    return;
+  } 
+  this.span.classList.add('hidden')
+  this.span.textContent = '►'
+}
 
 const Home = () => {
   // const { loading, data } = useQuery(QUERY_THOUGHTS);
   // const thoughts = data?.thoughts || [];
+  const [isHidden, setHidden] = useState("false");
+
+  const handleToggle = () => {
+    setHidden(!isHidden)
+  }
+
+  const { projects } = useQuery(QUERY_ME)
+  console.log('hello', projects)
 
   return (
-    <main>
-      <div className="flex-row justify-center">
-        {/* <div
-          className="col-12 col-md-10 mb-3 p-3"
-          style={{ border: '1px dotted #1a1a1a' }}
-        >
-          <ThoughtForm />
+    <body>
+      <nav>
+        <ul>
+          <li>
+            <h1 id="dashboard-nav">🏠 Dashboard</h1>
+          </li>
+          <li>
+            <h1 onClick={handleToggle} id="projects-nav">🏗️ Projects<span id="projects-span">►</span></h1>
+          </li>
+          <li id="projects-drop" className={`app ${isHidden ? "hidden" : ""}`}>
+            <h3>No Projects Found...</h3>
+            <h3>No Projects Found...</h3>
+          </li>
+          <li>
+            <h1 id="notes-nav">📝 Notes</h1>
+          </li>
+        </ul>
+      </nav>
+
+      <section>
+        <div className="main-div">
+
         </div>
-        <div className="col-12 col-md-8 mb-3">
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            <ThoughtList
-              thoughts={thoughts}
-              title="Some Feed for Thought(s)..."
-            />
-          )}
-        </div> */}
-      </div>
-    </main>
+      </section>
+    </body>
   );
 };
 

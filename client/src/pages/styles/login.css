@@ -1,0 +1,35 @@
+.login-div {
+  display: flex;
+  justify-content: center;
+} .input-form {
+  display: flex;
+  flex-direction: column;
+} .form-inputs {
+  margin: 0;
+  font-size: 35px;
+  padding: 8px;
+} #form-header {
+  font-size: 70px;
+  text-align: center;
+  margin: 0 0 10px 0;
+} #submit-btn {
+  font-weight: bold;
+  margin-top: 30px;
+} #submit-btn:hover {
+  cursor: pointer;
+} form h2 {
+  margin-bottom: 0;
+  font-size: 40px;
+} form {
+  border: 1px solid black;
+  padding: 30px;
+  border-radius: 20px;
+  margin-top: 40px;
+  max-width: 50%;
+} .signup-h2 {
+  font-size: 30px;
+  width: 80%;
+} .signup-h2 a {
+  text-decoration: none;
+  color: #0000EE;
+}
