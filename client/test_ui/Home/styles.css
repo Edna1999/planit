@@ -15,7 +15,7 @@ header {
   border-bottom: 1px solid black;
   align-items: center;
   user-select: none;
-  background-color: white;
+  background-color: #376E6F;
 } .list-nav ul {
   list-style: none;
   display: flex;
@@ -30,7 +30,7 @@ header {
   text-decoration: none;
 } .list-nav a:hover {
   cursor: pointer;
-  color: blueviolet;
+  color: white;
   transition-duration: 300ms;
 } #navigation-logo {
   font-size: 50px;
@@ -43,7 +43,9 @@ header {
 } #navigation-logo a {
   color: black;
   text-decoration: none;
-} 
+} #login-btn, #logout-btn {
+  color: #1C3334;
+}
 
 /* Side Nav */
 nav {

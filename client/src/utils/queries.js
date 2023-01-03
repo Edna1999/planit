@@ -49,6 +49,14 @@ export const QUERY_ME = gql`
       firstName
       lastName
       email
+      projects {
+        _id
+        projectName
+      }
+      tasks {
+        _id
+        taskName
+      }
     }
   }
 `;

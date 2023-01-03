@@ -45,7 +45,7 @@ function App() {
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
           <Header />
-          <div className="container">
+          <div className="">
             <Routes>
               <Route 
                 path="/"
@@ -61,16 +61,16 @@ function App() {
               />
               <Route 
                 path="/me" 
-                element={<Profile />}
+                // element={<Profile />}
               />
               <Route 
                 path="/profiles/:username" 
-                element={<Profile />}
+                // element={<Profile />}
               />
              
             </Routes>
           </div>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
     </ApolloProvider>
