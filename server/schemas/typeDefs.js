@@ -37,7 +37,7 @@ const typeDefs = gql`
     user: User
   }
 
-  input TaskUserInput {
+  input UserInput {
     _id: ID
     username: String
     firstName: String
@@ -64,8 +64,10 @@ const typeDefs = gql`
     addProject(projectName: String!, projectDescription: String!): Project
     removeProject(projectId: ID!): Project
     updateProject(projectId: ID!, projectName: String, projectDescription: String, startDate: String, endDate: String, isComplete: Boolean): Project
-    addUsersToTask(taskId: ID!, users: [TaskUserInput]): Task
+    addUsersToTask(taskId: ID!, users: [UserInput]): Task
     removeUsersFromTask(taskId: ID!, userIds: [ID]): Task
+    addUsersToProject(projectId: ID!, users: [UserInput]): Project
+    removeUsersFromProject(projectId: ID!, userIds: [ID]): Project
   }
 `;
 
