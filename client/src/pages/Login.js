@@ -100,7 +100,7 @@ const Login = (props) => {
       </p>
     ) : (
       <div className="login-div">
-        <form>
+        <form className='login-form'>
           <h1 id="form-header">Login</h1>
           <div className="input-form">
 
