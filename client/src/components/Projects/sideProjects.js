@@ -7,7 +7,7 @@ import './sideProjects.css'
 
 // Allows us to use reducers to update or change project that we are the creator of
 
-const SideProjects = () => {
+const SideProjects = ({ projects }) => {
   // const [sideProject, changeSideProject] = useState(1)
 
   // const changeProject = (id) => {
@@ -31,7 +31,10 @@ const SideProjects = () => {
       <h1 className='nav-title'>Your Projects</h1>
       
       <ul className='projects-ul'>
-        <li id='1'>
+        {projects && projects.map((project) => (
+          <li id={project._id}><span>{project.projectName}</span></li>
+        ))}
+        {/* <li id='1'>
           Project 1
         </li>
         <li id='1'>
@@ -39,7 +42,7 @@ const SideProjects = () => {
         </li>
         <li id='1'>
           Project 3
-        </li>
+        </li> */}
       </ul>
 
     </aside>
