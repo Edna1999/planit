@@ -99,7 +99,7 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    updateTask: async (parent, { taskId, taskName, taskDescription, startDate, endDate }, context) => {
+    updateTask: async (parent, { taskId, taskName, taskDescription, startDate, endDate}, context) => {
       if(context.user){
         return await Task.findOneAndUpdate(
           { _id: taskId },
@@ -141,7 +141,7 @@ const resolvers = {
       if (context.user) {
         const project = await Project.findOneAndDelete({
           _id: projectId,
-          users: { $in: [context.user._id] },
+          users: { $in: [context.user._id] }, // may need to remove this
         });
 
         await User.findOneAndUpdate(
@@ -174,7 +174,31 @@ const resolvers = {
 
         return project;
       }
-    },   
+    }, 
+    
+    addUsersToTask: async (parent, { taskId, users }, context) => {
+      if(context.user){
+        const task = await Task.findOne({ _id: taskId });
+        if(!task){
+          throw new Error("Task not found.");
+        }
+        task.users = [...task.users, ...users];
+        return task.save();
+      }
+      throw new Error("Not authenticated.");
+    },
+
+    removeUsersFromTask: async (parent, { taskId, userIds }, context) => {
+      if(context.user){
+        const task = await Task.findOne({ _id: taskId });
+        if(!task){
+          throw new Error("Task not found.");
+        }
+        task.users = task.users.filter((user) => !userIds.includes(user._id));
+        return task.save();
+      }
+      throw new Error("Not authenticated.");
+    },
   }
 };
 

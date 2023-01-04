@@ -37,6 +37,14 @@ const typeDefs = gql`
     user: User
   }
 
+  input TaskUserInput {
+    _id: ID
+    username: String
+    firstName: String
+    lastName: String
+    email: String
+  }
+
   type Query {
     users: [User]
     projects: [Project]
@@ -56,6 +64,8 @@ const typeDefs = gql`
     addProject(projectName: String!, projectDescription: String!): Project
     removeProject(projectId: ID!): Project
     updateProject(projectId: ID!, projectName: String, projectDescription: String, startDate: String, endDate: String, isComplete: Boolean): Project
+    addUsersToTask(taskId: ID!, users: [TaskUserInput]): Task
+    removeUsersFromTask(taskId: ID!, userIds: [ID]): Task
   }
 `;
 
