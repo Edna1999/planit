@@ -35,10 +35,7 @@ mutation addTask($projectId: String!, $taskName: String!) {
       taskName
       taskDescription
       createdAt
-      users {
-        _id
-        username
-      }
+    
       
     }
   }
@@ -48,79 +45,67 @@ mutation addTask($projectId: String!, $taskName: String!) {
 export const REMOVE_TASK = gql`
 mutation removeTask($taskId: ID!) {
   removeTask(taskId: $taskId) {
-    taskId
+    _id
   
   }
 }
 `;
 
-//  export const ADD_PROJECT = gql`
-//     mutation addProject($projectName: String!, $projectDescription: String!, $startDate: String!, $endDate: String!) {
-//     addProject(projectName: $projectName, projectDescription: $projectDescription, startDate: $startDate, endDate: $endDate) {
-//      _id
-//      projectName
-//      projectDescription
-//      startDate
-//      endDate
-//      users {
-//       _id
-//       username
-//      }
-//     tasks {
-//       _id
-//       taskName
-//     }
-//     createdAt
-//    }
-//  }
-//  `;
+ export const ADD_PROJECT = gql`
+    mutation addProject($projectName: String!, $projectDescription: String!, $startDate: String!, $endDate: String!) {
+    addProject(projectName: $projectName, projectDescription: $projectDescription, startDate: $startDate, endDate: $endDate) {
+     _id
+     projectName
+     projectDescription
+     startDate
+     endDate
+    createdAt
+   }
+ }
+ `;
 
 
-//  export const UPDATE_TASK = gql`
-// mutation updateTask($taskName: String!, $taskDescription: String!){
-//   updateTask( taskName: $taskName, taskDescription: $taskDescription) {
-//     project {
-//       _id
-//       taskName
-//       taskDescription
-//     }
+ export const UPDATE_TASK = gql`
+mutation updateTask($taskName: String!, $taskDescription: String!, $startDate: String!, $endDate: String!){
+  updateTask( taskName: $taskName, taskDescription: $taskDescription, startDate: $startDate, endDate: $endDate ) {
+    task {
+      _id
+      taskName
+      taskDescription
+      startDate
+      endDate
+    }
 
-//   }
-// }
-// `;
+  }
+}
+`;
 
 
-// export const REMOVE_PROJECT = gql`
-// mutation removeProject($projectId: ID!) {
-//   removeProject(projectId: $projectId) {
-//     _id
-//     projectName
-//     projectDescription
-//     startDate
-//     endDate
-//     users
-//     tasks
-//   }
-// }
-// `;
+export const REMOVE_PROJECT = gql`
+mutation removeProject($projectId: ID!) {
+  removeProject(projectId: $projectId) {
+    _id
+    
+  }
+}
+`;
 
-// export const UPDATE_PROJECT = gql`
-// mutation updateProject($projectName: String!, $projectDescription: String!){
-//   updateProject( projectName: $projectName, projectDescription: $projectDescription) {
-//     project {
-//       _id
-//       projectName
-//       projectDescription
-//     startDate
-//     endDate
-//     users
-//     tasks
+export const UPDATE_PROJECT = gql`
+mutation updateProject($projectName: String!, $projectDescription: String!, $startDate: String!, $endDate: String!, $isComplete: Boolean!){
+  updateProject( projectName: $projectName, projectDescription: $projectDescription, startDate: $startDate, endDate: $endDate, isComplete: $isComplete ) {
+    project {
+      _id
+      projectName
+      projectDescription
+      startDate
+      endDate
+      isComplete
 
-//     }
+    }
 
-//   }
-// }
-// `;
+  }
+}
+`;
 
 
 
