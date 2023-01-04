@@ -1,0 +1,6 @@
+.main-div-projects {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+  background-color: aliceblue;
+} 

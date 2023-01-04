@@ -7,7 +7,7 @@ const { Provider } = ProjectContext;
 const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useProjectReducer({
     projects: [],
-    currentProject: ''
+    currentProject: 1
   });
 
   return <Provider value={[state, dispatch]} {...props} />;

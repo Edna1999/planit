@@ -1,0 +1,75 @@
+/* Current Project */
+.current-project {
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 0 30px;
+} .current-project h1 {
+  font-size: 45px;
+  text-align: center;
+} .information-set h2 {
+  font-size: 40px;
+  margin: 40px 0 0 40px;
+} .information-set p {
+  font-size: 30px;
+  margin: 5px 0 0 40px;
+} .main-info {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-around;
+} .information-set {
+  border: 1px solid black;
+  border-left: none;
+  width: 90%;
+  background-color: rgb(182, 182, 182);
+  padding-bottom: 30px;
+}
+
+/* Current Project Nav */
+.information-nav {
+  width: 10%;
+  border-right: 1px solid black;
+} .information-nav h1:hover {
+  cursor: pointer;
+} 
+
+
+.active {
+  margin: 0;
+  padding: 30px 0;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  background-color: rgb(182, 182, 182);
+  z-index: 999;
+} .not-active {
+  margin: 0;
+  padding: 30px 0;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.top-title {
+  margin-top: 20px;
+} 
+
+.tasks-ul li {
+  font-weight: bold;
+  font-size: 35px;
+  margin: 15px 0 0 20px;
+  list-style: none;
+} 
+
+.team-ul {
+  font-weight: bold;
+  font-size: 35px;
+  margin: 5px 0 0 0;
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
