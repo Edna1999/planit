@@ -11,7 +11,9 @@ const Header = () => {
   return (
     <header>
       <div>
-        <h1 href="../Home/index.html" id="navigation-logo">PlanIt</h1>
+        <Link to='/'>
+          <h1 id="navigation-logo">PlanIt</h1>
+        </Link>
       </div>
         {Auth.loggedIn() ? (
               <>

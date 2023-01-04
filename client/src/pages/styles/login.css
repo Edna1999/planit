@@ -20,7 +20,7 @@
 } form h2 {
   margin-bottom: 0;
   font-size: 40px;
-} form {
+} .login-form {
   border: 1px solid black;
   padding: 30px;
   border-radius: 20px;

@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
-import { ADD_PROJECT } from '../../utils/actions';
+import { ADD_PROJECT } from '../../utils/mutations';
 import { useProjectContext } from '../../utils/mutations';
 import { idbPromise } from '../../utils/helpers';
 import { Link } from 'react-router-dom';
@@ -25,15 +25,16 @@ const NewProjects = () => {
     });
   };
   const handleTeamChange = (event) => {
-    const { index, name, value } = event.target
+    const { name, value } = event.target
+    const index = event.target.id
     console.log(index, name, value)
 
     setFormState({
       ...formState,
-      [name]: {
+      [name]: [{
         index: index,
         value: value
-      }
+      },]
     })
   }
 
@@ -72,7 +73,9 @@ const NewProjects = () => {
     // appendDiv.append(newDiv)
 
     
-    newInput.onChange = {handleTeamChange}
+    newDiv.onchange = {
+      handleTeamChange
+    }
 
     deleteBtn.onclick = function() {
       newDiv.parentNode.removeChild(newDiv)
@@ -80,14 +83,15 @@ const NewProjects = () => {
   }
 
   return (
-    <div>
+    <main>
       {data ? (
         <p>
           Successfully Added a New Project!
           <Link to='/'>Click Here</Link>
         </p>
       ) : (
-        <form onSubmit={handleFormSubmit}>
+        <div>
+          <form onSubmit={handleFormSubmit}>
           <h1>Create New Project</h1>
 
           <h3>Project Name<span className="color-red">*</span>: <input 
@@ -124,7 +128,7 @@ const NewProjects = () => {
 
           <div className="all-team-inputs">
             <div id="append-div">
-              <input name="teamInputs" onChange={handleTeamChange} className="team-inputs"/>
+              <input onChange={handleTeamChange} id='0' name="teamInputs" className="team-inputs"/>
               <h4 onClick={addTeamMember} id="more-members">➕</h4>
             </div>
           </div>
@@ -132,15 +136,16 @@ const NewProjects = () => {
           <div className="btn-div">
             <button id="submit-btn" type="submit">Submit</button>
           </div>
-        </form>
+          </form>
+        </div>
       )}
         {error && (
           <div>
             {error.message}
           </div>
         )}
-    
-    </div>
+      
+    </main>
   ) 
 }
 

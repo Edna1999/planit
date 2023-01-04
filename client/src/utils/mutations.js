@@ -54,12 +54,12 @@ mutation removeTask($taskId: ID!) {
  export const ADD_PROJECT = gql`
     mutation addProject($projectName: String!, $projectDescription: String!, $startDate: String!, $endDate: String!) {
     addProject(projectName: $projectName, projectDescription: $projectDescription, startDate: $startDate, endDate: $endDate) {
-     _id
-     projectName
-     projectDescription
-     startDate
-     endDate
-    createdAt
+      _id
+      projectName
+      projectDescription
+      startDate
+      endDate
+      createdAt
    }
  }
  `;
