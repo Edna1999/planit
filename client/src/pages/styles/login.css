@@ -33,3 +33,14 @@
   text-decoration: none;
   color: #0000EE;
 }
+
+@media screen and (max-width: 1150px) {
+  .login-form {
+    max-width: 75%;
+  }
+}
+@media screen and (max-width: 775px) {
+  .login-form {
+    max-width: 100%;
+  }
+}

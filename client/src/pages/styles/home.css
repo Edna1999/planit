@@ -139,3 +139,22 @@ nav {
   text-align: center;
   padding: 0;
 }
+
+
+@media screen and (max-width: 1000px) {
+  nav {
+    float: none;
+    min-height: fit-content;
+    border-bottom: 1px solid black;
+    width: 100%;
+    text-align: center;
+  } .main-div-projects {
+    display: flex;
+    min-width: 100%;
+  } .current-project {
+    width: 100%;
+    padding: 0;
+  } .information-nav {
+    width: 20%;
+  }
+}

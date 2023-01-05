@@ -122,7 +122,7 @@ const Signup = () => {
       </p>
       ) : (
       <div className="login-div">
-        <form onSubmit={handleFormSubmit}>
+        <form className="signup-form" onSubmit={handleFormSubmit}>
           <h1 id="form-header">Signup</h1>
           <div className="input-form">
             <div className="input-sections">

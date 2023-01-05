@@ -36,4 +36,22 @@
   color: #0000EE;
 } #submit-btn {
   margin-top: 80px;
+} .signup-form {
+  border: 1px solid black;
+  padding: 30px;
+  border-radius: 20px;
+  margin-top: 40px;
+  max-width: 50%;
+} 
+
+
+@media screen and (max-width: 1150px) {
+  .signup-form {
+    max-width: 75%;
+  }
+}
+@media screen and (max-width: 775px) {
+  .signup-form {
+    max-width: 100%;
+  }
 }

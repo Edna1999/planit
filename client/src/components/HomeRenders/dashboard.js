@@ -13,13 +13,9 @@ const Dashboard = () => {
       <h1 id="dashboard-title">Dashboard</h1>
 
       <div class="sections-div">
-        <section class="main-left-section">
+        <section class="main-section">
           <h1>Your Tasks</h1>
           <p class="no-tasks">No Tasks Found! Yay For You!</p>
-        </section>
-    
-        <section class="main-right-section">
-          <h1>Idk Display Sum Here</h1>
         </section>
       </div>
     </div>
