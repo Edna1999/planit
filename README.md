@@ -4,7 +4,7 @@
 
 ## Description
 
-  This application uses GraphQL API, Node.js, Express.js, MongotDB, and React, and was deployed using Heroku to run an application to that acts as a project management software. The application allows users to register and log in to the application. Upon registration, users can create projects, add tasks to projects, and add other users to the project to encourage cooperation on projects and tasks.
+  This application uses GraphQL API, Node.js, Express.js, MongoDB, and React, and was deployed using Heroku to run an application to that acts as a project management software. The application allows users to register and log in to the application. Upon registration, users can create projects, add tasks to projects, and add other users to the project to encourage cooperation on projects and tasks.
 
   ## Table of Contents
 
