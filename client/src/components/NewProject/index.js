@@ -73,8 +73,18 @@ const NewProjects = () => {
     // appendDiv.append(newDiv)
 
     
-    newDiv.onchange = {
-      handleTeamChange
+    newDiv.onchange = function(event) {
+      const { name, value } = event.target
+      const index = event.target.id
+      console.log(index, name, value)
+  
+      setFormState({
+        ...formState,
+        [name]: [{
+          index: index,
+          value: value
+        },]
+      })
     }
 
     deleteBtn.onclick = function() {
