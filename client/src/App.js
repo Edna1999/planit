@@ -11,11 +11,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Profile from './pages/Profile';
+// import Profile from './pages/Profile';
 import Header from './components/Header';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 import CreateProject from './pages/CreateProject';
-import Projects from './pages/Projects';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -64,10 +63,6 @@ function App() {
               <Route
                 path='/new-project'
                 element={<CreateProject/>}
-              />
-              <Route
-                path='/projects'
-                element={<Projects/>}
               />
               <Route 
                 path="/me" 
