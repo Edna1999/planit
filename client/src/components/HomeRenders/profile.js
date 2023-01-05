@@ -31,8 +31,8 @@ const Profile = () => {
     numTasks = profile.tasks.length;
   }
 
-  console.log(numProjects);
-  console.log(numTasks);
+  // console.log(numProjects);
+  // console.log(numTasks);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -43,7 +43,7 @@ const Profile = () => {
     <div className="main-profile">
       <h1 id="profile-title">Profile</h1>
 
-      <div class="profile-div">
+      <div className="profile-div">
         <h1>username: <span>{profile.username}</span></h1>
         <h1>Name: <span>{profile.firstName} {profile.lastName}</span></h1>
         <h1>Email: <span>{profile.email}</span></h1>
