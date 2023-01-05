@@ -37,8 +37,7 @@
 } .signup-h4 a {
   text-decoration: none;
   color: #0000EE;
-  margin-left: 50px;
-  margin-left: 50px;
+  margin-left: 60px;
 } #submit-btn {
   margin-top: 80px;
 }.or{
@@ -46,12 +45,7 @@
   font-size: 40px;
   margin-top: 20px;
   text-align: center;
-} .or {
-  font-family: monospace, monospace;
-  font-size: 40px;
-  margin-top: 20px;
-  text-align: center;
-}
+} 
 
 
 .signup-form {
