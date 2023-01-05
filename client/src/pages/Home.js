@@ -17,7 +17,7 @@ const Home = () => {
   // const thoughts = data?.thoughts || [];
   const [isHidden, setHidden] = useState("false");
   const [currentPage, setPage] = useState("dashboard");
-  const [projectId, setProjectId] = useState('');
+  // const [projectId, setProjectId] = useState('');
   const [currentSlide, changeSlide] = useState(1)
 
   const clickSlide = (id) => {
@@ -38,7 +38,7 @@ const Home = () => {
   const handlePageChanging = (id) => {
     const selectedId = Number(id.target.id)
     const ifProject = id.target.textContent;
-    const clickedProjectId = id.target.projectId;
+    // const clickedProjectId = id.target.projectId;
     if (selectedId === 1) {
       setPage('dashboard')
       return;
@@ -48,15 +48,16 @@ const Home = () => {
       return;
     }
     setPage(ifProject)
-    setProjectId(clickedProjectId)
-    console.log(clickedProjectId)
+    // setProjectId(clickedProjectId)
+    // console.log(clickedProjectId)
   }
 
   const { data } = useQuery(QUERY_ME)
   const projects = data?.me.projects || [];
 
-  return (
-    <div className="body">
+  if (!data) {
+    return (
+      <div className="body">
       <nav>
         <ul>
           <li>
@@ -70,7 +71,41 @@ const Home = () => {
           </li>
           <li id="projects-drop" className={`app ${isHidden ? "hidden" : ""}`}>
             { projects.map( (project, index) => (
-              <h3 onClick={handlePageChanging} key={index} id={index + 3} projectId={project._id}>{project.projectName}</h3>
+              <h3 onClick={handlePageChanging} key={index} id={index + 3} projectid={project._id}>{project.projectName}</h3>
+            ))
+            }
+          </li>
+        </ul>
+      </nav>
+
+      <section>
+        <div>
+          {currentPage === 'dashboard' ? (
+            <Dashboard/>
+          ) : (
+            <Profile/>
+          )}
+        </div>
+      </section>
+      </div>
+    )}
+
+  return (
+    <div className="body">
+      <nav className="data-nav">
+        <ul>
+          <li>
+            <h1 onClick={handlePageChanging} id="1">🏠 Dashboard</h1>
+          </li>
+          <li>
+            <h1 onClick={handlePageChanging} id="2">👤 Profile</h1>
+          </li>
+          <li>
+            <h1 onClick={handleToggle} id="projects-nav">🏗️ Projects<span id="projects-span">{isHidden ? "►" : "▼"}</span></h1>
+          </li>
+          <li id="projects-drop" className={`app ${isHidden ? "hidden" : ""}`}>
+            { projects.map( (project, index) => (
+              <h3 onClick={handlePageChanging} key={index} id={index + 3} projectid={project._id}>{project.projectName}</h3>
             ))
             }
           </li>

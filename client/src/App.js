@@ -11,9 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-// import Profile from './pages/Profile';
 import Header from './components/Header';
-// import Footer from './components/Footer';
 import CreateProject from './pages/CreateProject';
 import UpdateProject from './components/UpdateProject/index.js';
 
@@ -69,18 +67,8 @@ function App() {
                 path='/update-project-details'
                 element={<UpdateProject/>}
               />
-              <Route 
-                path="/me" 
-                // element={<Profile />}
-              />
-              <Route 
-                path="/profiles/:username" 
-                // element={<Profile />}
-              />
-             
             </Routes>
           </div>
-          {/* <Footer /> */}
         </div>
       </Router>
     </ApolloProvider>

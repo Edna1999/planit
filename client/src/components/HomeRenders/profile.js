@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { QUERY_ME } from '../../utils/queries';
 
@@ -8,6 +8,14 @@ import './css/profile.css'
 const Profile = () => {
   const { loading, data } = useQuery(QUERY_ME)
 
+  if (!data) {
+    return (
+      <h4>
+        You need to be logged in to see your profile page. Use the navigation
+        links above to sign up or log in!
+      </h4>
+    );
+  }
   const profile = data.me;
   let numProjects = profile.projects.length;
   let numTasks = 0;
@@ -28,15 +36,6 @@ const Profile = () => {
 
   if (loading) {
     return <div>Loading...</div>;
-  }
-
-  if (!profile?.username) {
-    return (
-      <h4>
-        You need to be logged in to see your profile page. Use the navigation
-        links above to sign up or log in!
-      </h4>
-    );
   }
 
 
