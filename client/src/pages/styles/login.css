@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   margin-top: 80px;
+  margin-top: 80px;
 } .input-form {
   display: flex;
   flex-direction: column;
@@ -9,7 +10,9 @@
   margin: 0;
   font-size: 35px;
   padding: 8px;
+  border-radius: 3px;
 } #form-header {
+  font-size: 50px;
   font-size: 50px;
   text-align: center;
   margin: 0 0 10px 0;
@@ -20,15 +23,21 @@
 } #submit-btn:hover {
   cursor: pointer;
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.532);
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.532);
 } form h2 {
   margin-bottom: 0;
+  font-size: 20px;
   font-size: 20px;
 } .login-form {
   border: 1px solid black;
   padding: 30px;
   border-radius: 20px;
-  margin-top: 40px;
+  margin-top: 0;
   max-width: 50%;
+  width: fit-content;
+  background-color: #436075;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.41);
+} .signup-h4 {
   width: fit-content;
   background-color: #436075;
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.41);
@@ -40,8 +49,25 @@
   font-weight: lighter;
   font-family: cursive;
 } .signup-h4 a {
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-left: 120px;
+  font-weight: lighter;
+  font-family: cursive;
+} .signup-h4 a {
+  margin-left: 10px;
   text-decoration: none;
   color: #0000EE;
+  font-weight: lighter;
+}.signup-h4 a:hover{
+  text-decoration: underline;
+}h2{
+  margin-top: 20px;
+}.or{
+  font-family: monospace, monospace;
+  font-size: 40px;
+  margin-top: 20px;
+  text-align: center;
   font-weight: lighter;
 }.signup-h4 a:hover{
   text-decoration: underline;

@@ -16,7 +16,8 @@ const Home = () => {
   // const { loading, data } = useQuery(QUERY_THOUGHTS);
   // const thoughts = data?.thoughts || [];
   const [isHidden, setHidden] = useState("false");
-  const [currentPage, setPage] = useState("dashboard")
+  const [currentPage, setPage] = useState("dashboard");
+  const [projectId, setProjectId] = useState('');
   const [currentSlide, changeSlide] = useState(1)
 
   const clickSlide = (id) => {
@@ -36,7 +37,8 @@ const Home = () => {
 
   const handlePageChanging = (id) => {
     const selectedId = Number(id.target.id)
-    const ifProject = id.target.textContent
+    const ifProject = id.target.textContent;
+    const clickedProjectId = id.target.projectId;
     if (selectedId === 1) {
       setPage('dashboard')
       return;
@@ -46,10 +48,12 @@ const Home = () => {
       return;
     }
     setPage(ifProject)
+    setProjectId(clickedProjectId)
+    console.log(clickedProjectId)
   }
 
-  const { projects } = useQuery(QUERY_ME)
-  console.log('hello', projects)
+  const { data } = useQuery(QUERY_ME)
+  const projects = data?.me.projects || [];
 
   return (
     <div className="body">
@@ -65,9 +69,10 @@ const Home = () => {
             <h1 onClick={handleToggle} id="projects-nav">🏗️ Projects<span id="projects-span">{isHidden ? "►" : "▼"}</span></h1>
           </li>
           <li id="projects-drop" className={`app ${isHidden ? "hidden" : ""}`}>
-            <h3 onClick={handlePageChanging} id="3">Project 1</h3>
-            <h3 onClick={handlePageChanging} id="4">Project 2</h3>
-            <h3 onClick={handlePageChanging} id="5">Project 3</h3>
+            { projects.map( (project, index) => (
+              <h3 onClick={handlePageChanging} key={index} id={index + 3} projectId={project._id}>{project.projectName}</h3>
+            ))
+            }
           </li>
         </ul>
       </nav>

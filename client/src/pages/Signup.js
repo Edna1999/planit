@@ -108,7 +108,7 @@ const Signup = () => {
           </div>
           <div className="bottom-section">
           </div>
-            <p className='or'>OR</p>
+          <p className='or'>OR</p>
           <h4 className="signup-h4">
             <Link to='/login'>
               Login Instead
