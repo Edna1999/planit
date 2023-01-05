@@ -19,12 +19,12 @@ const Header = () => {
               <>
                 <ul className='list-ul'>
                   <li className='list-li'>
-                <Link className='header-links' to='/new-project'>
+                <Link id='new' className='header-links' to='/new-project'>
                   Create Project
                 </Link>
                   </li>
                   <li className='list-li'>
-                <Link className='header-links' to='me'>
+                <Link id='profile' className='header-links' to='me'>
                   Profile
                 </Link>
                   </li>
