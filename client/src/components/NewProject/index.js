@@ -134,13 +134,13 @@ const NewProjects = () => {
           />
           </h3>
 
-          <h3 className="team-members">Team Members:</h3>
-
           <div className="all-team-inputs">
-            <div id="append-div">
+
+          <h3 className="team-members">Team Members:
+
               <input onChange={handleTeamChange} id='0' name="teamInputs" className="team-inputs"/>
               <h4 onClick={addTeamMember} id="more-members">➕</h4>
-            </div>
+              </h3>
           </div>
 
           <div className="btn-div">
