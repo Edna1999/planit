@@ -23,6 +23,7 @@
 } #submit-btn:hover {
   cursor: pointer;
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.532);
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.532);
 } form h2 {
   margin-bottom: 0;
   font-size: 20px;
@@ -36,8 +37,24 @@
   width: fit-content;
   background-color: #436075;
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.41);
-}  .signup-h4 a {
+} .signup-h4 {
+  width: fit-content;
+  background-color: #436075;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.41);
+} .signup-h4 {
   font-size: 30px;
+  width: 80%;
+  margin-top: 20px;
+  margin-left: 110px;
+  font-weight: lighter;
+  font-family: cursive;
+} .signup-h4 a {
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-left: 110px;
+  font-weight: lighter;
+  font-family: cursive;
+} .signup-h4 a {
   margin-left: 10px;
   text-decoration: none;
   color: #0000EE;
@@ -55,6 +72,8 @@
   font-size: 40px;
   margin-top: 20px;
   text-align: center;
+  font-weight: lighter;
+
 }
 
 @media screen and (max-width: 1150px) {

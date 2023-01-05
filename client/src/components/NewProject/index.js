@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ADD_PROJECT } from '../../utils/mutations';
 import { Link } from 'react-router-dom';
 
@@ -24,6 +24,12 @@ const NewProjects = () => {
     });
   };
 
+  const goHome = () => {
+    document.location.replace('/').then(
+      document.location.reload()
+    )
+  }
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState)
@@ -47,7 +53,7 @@ const NewProjects = () => {
             Successfully Added a New Project!
           </p>
           <div className="btn-div">
-            <button><Link to='/'>Back to Dashboard</Link></button>
+            <button><Link onClick={goHome} to='/'>Back to Dashboard</Link></button>
           </div>
           <div className="btn-div">
             <button className='hidden'><Link to="/update-project-details">Add Project Details</Link></button>
