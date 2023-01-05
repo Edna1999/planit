@@ -163,15 +163,6 @@ const Home = () => {
                       <h1 className='top-title'>Tasks</h1>
                   
                       <ul className='tasks-ul'>
-                        <li>
-                          Task 1
-                        </li>
-                        <li>
-                          Task 2
-                        </li>
-                        <li>
-                          Task 3
-                        </li>
                       </ul>
                     </div>
                     </div>
@@ -188,15 +179,6 @@ const Home = () => {
                         <h1 className='top-title'>Your Team</h1>
                   
                         <ul className='team-ul'>
-                          <li>
-                            Member 1
-                          </li>
-                          <li>
-                            Member 2
-                          </li>
-                          <li>
-                            Member 3
-                          </li>
                         </ul>
                       </div>
                     </div>

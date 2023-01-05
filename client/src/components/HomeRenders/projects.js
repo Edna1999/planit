@@ -9,7 +9,7 @@ const Project = ({ projectId }) => {
   const [currentSlide, changeSlide] = useState(1);
 
   const { data } = useQuery(QUERY_PROJECT);
-  console.log(data);
+  // console.log(data);
 
 
   const clickSlide = (id) => {
