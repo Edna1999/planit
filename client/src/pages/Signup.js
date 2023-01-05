@@ -180,11 +180,13 @@ const Signup = () => {
           </div>
           <div className="bottom-section">
           </div>
-          <h2 className="signup-h2">
+
+          <p className='or'>OR</p>
+          <h4 className="signup-h4">
             <Link to='/login'>
               Login Instead
             </Link>
-          </h2>
+          </h4>
         </form>
       </div>
       )}
