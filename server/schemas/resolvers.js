@@ -123,6 +123,15 @@ const resolvers = {
           projectName,
         });
 
+        await Project.findOneAndUpdate(
+          { _id: project._id },
+          { $addToSet: { users: context.user._id } },
+          {
+            new: true,
+            runValidators: true,
+          }
+        )
+
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { projects: project._id } },
