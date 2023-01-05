@@ -125,11 +125,12 @@ const Login = (props) => {
             <button className='form-inputs' id="submit-btn" onClick={handleFormSubmit}>Login</button>
           
             </div>
-          <h2 className="signup-h2">
+            <p className='or'>OR</p>
+          <h4 className="signup-h4">
             <Link to='/signup'>
               Create Account
             </Link>
-          </h2>
+          </h4>
         </form>
       </div>
       )}
