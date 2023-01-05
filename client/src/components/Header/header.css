@@ -15,7 +15,7 @@ html {
     border-bottom: 1px solid black;
     align-items: center;
     user-select: none;
-    background-color: #376E6F;
+    background-color: #2F4454;
     height: fit-content;
   } .list-ul {
     list-style: none;
@@ -24,35 +24,46 @@ html {
     text-decoration: none;
     margin: 0;
   } .list-li {
-    color: black;
     transition-duration: 300ms;
+    font-family: monospace, monospace;
     text-decoration: none;
-    font-size: 50px;
-    font-weight: 800;
+    font-size: 25px;
     margin-right: 40px;
+    border: 2px solid #2F4454;
+    border: 2px solid rgba(0, 0, 0, 0.37);
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.37);
+    border-radius: 5px;
+    padding: 10px;
   } .header-links {
-    color: black;
+    color: white;
     text-decoration: none;
     margin: 33.5px 0 0 0;
-  } .header-links:hover {
-    cursor: pointer;
+  } .list-li:hover {
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.37);
+    /* border: 2px solid #376E6F; */
     text-decoration: none;
-    color: rgb(230, 230, 230);
-    transition-duration: 300ms;
+    
   } #login-btn {
-    color: #1C3334;
+    background-color: white;
   } 
 
   #navigation-logo {
-    font-size: 50px;
+    font-size: 45px;
     font-weight: 800;
     margin: 33.5px 0 33.5px 40px;
     text-decoration: none;
-    color: black;
+    color: white;
+    box-shadow: 4px 4px 4px 4px #376E6F;
+    border-radius: 5px;
+    padding: 5px;
   } #navigation-logo:hover {
     cursor: pointer;
     text-decoration: none;
+    background-color: white;
+    color: #2F4454;
   } 
+
+  
 
 
 /* #2F4454, #DA7B93, #2E151B, #376E6F, 1C3334 */
