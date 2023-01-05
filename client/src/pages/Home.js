@@ -100,13 +100,16 @@ const Home = () => {
                   
                       <div className="information-set">
                         <h2>Description: </h2>
-                          <p>Description Here</p>
+                          { projects.map( (project, index) => (
+                            <p key={index} id={index + 3} projectId={project._id}>{project.projectDescription}</p>
+                          ))
+                          }
                   
                         <h2>Start Date: </h2>
-                          <p>1/1/2023</p>
+                          <p>None</p>
                   
                         <h2>End Date: </h2>
-                          <p>1/5/2023</p>
+                          <p>None</p>
                   
                         <h2>Complete? </h2>
                           <p>No</p>
