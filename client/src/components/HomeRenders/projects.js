@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 
+import { useQuery } from "@apollo/client";
+import { QUERY_PROJECT } from "../../utils/queries";
+
 import './css/project.css'
 
-const Project = () => {
-  const [currentSlide, changeSlide] = useState(1)
+const Project = ({ projectId }) => {
+  const [currentSlide, changeSlide] = useState(1);
+
+  const { data } = useQuery(QUERY_PROJECT);
+  console.log(data);
+
 
   const clickSlide = (id) => {
     if (id.target.id === String(1)) {
@@ -22,23 +29,23 @@ const Project = () => {
       {currentSlide === 1 ? (
         <div className="main-info">
 
-        <div className="information-nav">
-          <h1 onClick={clickSlide} id='1' className="active">ℹ️</h1>
-          <h1 onClick={clickSlide} id='2' className="not-active">✔️</h1>
-          <h1 onClick={clickSlide} id='3' className="not-active">🙋🏻</h1>
-        </div>
+          <div className="information-nav">
+            <h1 onClick={clickSlide} id='1' className="active">ℹ️</h1>
+            <h1 onClick={clickSlide} id='2' className="not-active">✔️</h1>
+            <h1 onClick={clickSlide} id='3' className="not-active">🙋🏻</h1>
+          </div>
 
-        <div className="information-set">
-            <h2>Description: </h2>
+          <div className="information-set">
+              <h2>Description: </h2>
               <p>Description Here</p>
 
-            <h2>Start Date: </h2>
+              <h2>Start Date: </h2>
               <p>1/1/2023</p>
 
-            <h2>End Date: </h2>
+              <h2>End Date: </h2>
               <p>1/5/2023</p>
 
-            <h2>Complete? </h2>
+              <h2>Complete? </h2>
               <p>No</p>
           </div>
         </div>
