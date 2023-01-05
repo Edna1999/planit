@@ -13,6 +13,7 @@ nav {
   border-right: 1px solid black; 
   min-height: 1000px;
   user-select: none;
+} .data-nav {
   margin-top: -15px;
 } nav ul {
   list-style: none;
