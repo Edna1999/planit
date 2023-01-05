@@ -1,9 +1,17 @@
+.main-div-projects {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  background-color: aliceblue;
+} 
+
 /* Current Project */
 .current-project {
-  width: 50%;
+  width: 80%;
   border: 1px solid black;
   border-radius: 20px;
   padding: 0 30px;
+  margin-top: 45px;
 } .current-project h1 {
   font-size: 45px;
   text-align: center;

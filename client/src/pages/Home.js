@@ -6,6 +6,7 @@ import Dashboard from "../components/HomeRenders/dashboard.js";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import Profile from "../components/HomeRenders/profile";
+import Project from "../components/HomeRenders/projects";
 
 // const projectElement = document.getElementById('projects-nav')
 // const projectSpan = document.getElementById('projects-span')
@@ -16,7 +17,7 @@ const Home = () => {
   // const { loading, data } = useQuery(QUERY_THOUGHTS);
   // const thoughts = data?.thoughts || [];
   const [isHidden, setHidden] = useState("false");
-  const [currentSlide, setSlide] = useState("dashboard")
+  const [currentPage, setPage] = useState("dashboard")
 
   const handleToggle = () => {
     setHidden(!isHidden)
@@ -24,15 +25,16 @@ const Home = () => {
 
   const handlePageChanging = (id) => {
     const selectedId = Number(id.target.id)
+    const ifProject = id.target.textContent
     if (selectedId === 1) {
-      setSlide('dashboard')
+      setPage('dashboard')
       return;
     } 
     else if (selectedId === 2) {
-      setSlide('profile')
+      setPage('profile')
       return;
     }
-    setSlide('projects')
+    setPage(ifProject)
   }
 
   const { projects } = useQuery(QUERY_ME)
@@ -61,13 +63,16 @@ const Home = () => {
 
       <section>
         <div>
-          {currentSlide === 'dashboard' ? (
+          {currentPage === 'dashboard' ? (
             <Dashboard/>
-          ) : currentSlide === 'profile' ? (
+          ) : currentPage === 'profile' ? (
             <Profile/>
           ) : (
-            <div>
-              Projects
+            <div className="main-div-projects">
+              <section className='current-project'>
+                <h1>{currentPage}</h1>
+                <Project/>
+              </section>
             </div>
           )}
         </div>

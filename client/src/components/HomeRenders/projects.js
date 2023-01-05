@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 
-import './mainProject.css'
+import './css/project.css'
 
-const MainProjects = () => {
+const Project = () => {
   const [currentSlide, changeSlide] = useState(1)
 
   const clickSlide = (id) => {
@@ -19,9 +18,7 @@ const MainProjects = () => {
 
 
   return (
-    <section className='current-project'>
-      <h1>Project 1</h1>
-
+    <div>
       {currentSlide === 1 ? (
         <div className="main-info">
 
@@ -96,9 +93,8 @@ const MainProjects = () => {
           </div>
         </div>
       )}
-
-    </section>
+    </div>
   )
 }
 
-export default MainProjects;
+export default Project;
