@@ -5,7 +5,7 @@ import './styles/home.css'
 import Dashboard from "../components/HomeRenders/dashboard.js";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
-import Notes from "../components/HomeRenders/notes";
+import Profile from "../components/HomeRenders/profile";
 
 // const projectElement = document.getElementById('projects-nav')
 // const projectSpan = document.getElementById('projects-span')
@@ -28,11 +28,11 @@ const Home = () => {
       setSlide('dashboard')
       return;
     } 
-    // else if (selectedId === 2) {
-    //   setSlide('notes')
-    //   return;
-    // }
-    console.log('Project ' + (selectedId - 2))
+    else if (selectedId === 2) {
+      setSlide('profile')
+      return;
+    }
+    setSlide('projects')
   }
 
   const { projects } = useQuery(QUERY_ME)
@@ -46,14 +46,16 @@ const Home = () => {
             <h1 onClick={handlePageChanging} id="1">🏠 Dashboard</h1>
           </li>
           <li>
+            <h1 onClick={handlePageChanging} id="2">👤 Profile</h1>
+          </li>
+          <li>
             <h1 onClick={handleToggle} id="projects-nav">🏗️ Projects<span id="projects-span">{isHidden ? "►" : "▼"}</span></h1>
           </li>
           <li id="projects-drop" className={`app ${isHidden ? "hidden" : ""}`}>
-            <h3 onClick={handlePageChanging} id="3">No Projects Found...</h3>
+            <h3 onClick={handlePageChanging} id="3">Project 1</h3>
+            <h3 onClick={handlePageChanging} id="4">Project 2</h3>
+            <h3 onClick={handlePageChanging} id="5">Project 3</h3>
           </li>
-          {/* <li>
-            <h1 onClick={handlePageChanging} id="2">📝 Notes</h1>
-          </li> */}
         </ul>
       </nav>
 
@@ -61,6 +63,8 @@ const Home = () => {
         <div>
           {currentSlide === 'dashboard' ? (
             <Dashboard/>
+          ) : currentSlide === 'profile' ? (
+            <Profile/>
           ) : (
             <div>
               Projects

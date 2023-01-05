@@ -29,7 +29,7 @@ const Header = () => {
                 </Link>
                   </li>
                   <li className='list-li'>
-                <Link className='header-links' id='logout-btn' to={logout}>
+                <Link className='header-links' id='logout-btn' onClick={logout}>
                   Logout
                 </Link>
                   </li>

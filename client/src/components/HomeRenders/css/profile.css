@@ -1,0 +1,32 @@
+/* Main Section */
+.main-profile {
+  margin: 15px 15px 0 465px;
+  min-height: 985px;
+  border: 1px solid black;
+  border-bottom: none;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+  background-color: white;
+} .profile-div {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  margin-left: 25px;
+} .profile-div span {
+  font-weight: normal;
+} .profile-div {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  margin-left: 25px;
+} 
+
+
+
+
+#profile-title {
+  text-align: center;
+  font-size: 65px;
+  margin: 10px 0 30px 0;
+  font-weight: bolder;
+}
