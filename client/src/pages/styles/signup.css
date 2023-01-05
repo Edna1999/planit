@@ -30,11 +30,14 @@
   margin-top: 40px;
   width: fit-content;
   background-color: #436075;
+  width: fit-content;
+  background-color: #436075;
 } .signup-h2 {
   font-size: 30px;
 } .signup-h4 a {
   text-decoration: none;
   color: #0000EE;
+  margin-left: 50px;
   margin-left: 50px;
 } #submit-btn {
   margin-top: 80px;
@@ -43,4 +46,30 @@
   font-size: 40px;
   margin-top: 20px;
   text-align: center;
+} .or {
+  font-family: monospace, monospace;
+  font-size: 40px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+.signup-form {
+  border: 1px solid black;
+  padding: 30px;
+  border-radius: 20px;
+  margin-top: 40px;
+  max-width: 50%;
+} 
+
+
+@media screen and (max-width: 1150px) {
+  .signup-form {
+    max-width: 75%;
+  }
+}
+@media screen and (max-width: 775px) {
+  .signup-form {
+    max-width: 100%;
+  }
 }

@@ -39,10 +39,6 @@ const Dashboard = () => {
             <h3 key={index} id={index}>{task.taskName}</h3>
           )) : <p className="no-tasks">No Tasks Found! Yay For You!</p>}
         </section>
-    
-        <section className="main-right-section">
-          <h1>Idk Display Sum Here</h1>
-        </section>
       </div>
     </div>
   )

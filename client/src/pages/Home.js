@@ -6,7 +6,6 @@ import Dashboard from "../components/HomeRenders/dashboard.js";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import Profile from "../components/HomeRenders/profile";
-import Project from "../components/HomeRenders/projects";
 
 // const projectElement = document.getElementById('projects-nav')
 // const projectSpan = document.getElementById('projects-span')
@@ -19,6 +18,18 @@ const Home = () => {
   const [isHidden, setHidden] = useState("false");
   const [currentPage, setPage] = useState("dashboard");
   const [projectId, setProjectId] = useState('');
+  const [currentSlide, changeSlide] = useState(1)
+
+  const clickSlide = (id) => {
+    if (id.target.id === String(1)) {
+      changeSlide(1)
+      return;
+    } else if (id.target.id === String(2)) {
+      changeSlide(2)
+      return;
+    } changeSlide(3)
+    return;
+  }
 
   const handleToggle = () => {
     setHidden(!isHidden)
@@ -76,7 +87,86 @@ const Home = () => {
             <div className="main-div-projects">
               <section className='current-project'>
                 <h1>{currentPage}</h1>
-                <Project projectId={projectId}/>
+                
+                <div>
+                  {currentSlide === 1 ? (
+                    <div className="main-info">
+                    
+                      <div className="information-nav">
+                      <h1 onClick={clickSlide} id='1' className="active">ℹ️</h1>
+                      <h1 onClick={clickSlide} id='2' className="not-active">✔️</h1>
+                      <h1 onClick={clickSlide} id='3' className="not-active">🙋🏻</h1>
+                      </div>
+                  
+                      <div className="information-set">
+                        <h2>Description: </h2>
+                          { projects.map( (project, index) => (
+                            <p key={index} id={index + 3} projectId={project._id}>{project.projectDescription}</p>
+                          ))
+                          }
+                  
+                        <h2>Start Date: </h2>
+                          <p>None</p>
+                  
+                        <h2>End Date: </h2>
+                          <p>None</p>
+                  
+                        <h2>Complete? </h2>
+                          <p>No</p>
+                      </div>
+                    </div>
+                  ) : currentSlide === 2 ? (
+                    <div className="main-info">
+                    
+                    <div className="information-nav">
+                      <h1 onClick={clickSlide} id='1' className="not-active">ℹ️</h1>
+                      <h1 onClick={clickSlide} id='2' className="active">✔️</h1>
+                      <h1 onClick={clickSlide} id='3' className="not-active">🙋🏻</h1>
+                    </div>
+                  
+                    <div className="information-set">
+                      <h1 className='top-title'>Tasks</h1>
+                  
+                      <ul className='tasks-ul'>
+                        <li>
+                          Task 1
+                        </li>
+                        <li>
+                          Task 2
+                        </li>
+                        <li>
+                          Task 3
+                        </li>
+                      </ul>
+                    </div>
+                    </div>
+                  ) : (
+                    <div className="main-info">
+                    
+                    <div className="information-nav">
+                      <h1 onClick={clickSlide} id='1' className="not-active">ℹ️</h1>
+                      <h1 onClick={clickSlide} id='2' className="not-active">✔️</h1>
+                      <h1 onClick={clickSlide} id='3' className="active">🙋🏻</h1>
+                    </div>
+                  
+                    <div className="information-set">
+                        <h1 className='top-title'>Your Team</h1>
+                  
+                        <ul className='team-ul'>
+                          <li>
+                            Member 1
+                          </li>
+                          <li>
+                            Member 2
+                          </li>
+                          <li>
+                            Member 3
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </section>
             </div>
           )}

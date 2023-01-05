@@ -13,11 +13,11 @@
 } 
 
 /* Main Left Section */
-.main-left-section {
-  width: 45%;
+.main-section {
+  width: 80%;
   border: 1px solid black;
   border-radius: 10px;
-} .main-left-section h1 {
+} .main-section h1 {
   font-size: 45px;
   text-align: center;
   margin: 10px 0 15px 0;
@@ -46,4 +46,14 @@
   font-size: 65px;
   margin: 10px 0 30px 0;
   font-weight: bolder;
+}
+
+@media screen and (max-width: 1000px) {
+  .main-div {
+    margin: 15px;
+    min-height: fit-content;
+    padding-bottom: 40px;
+    border: 1px solid black;
+    border-radius: 25px;
+  }
 }
