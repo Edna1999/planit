@@ -37,8 +37,8 @@ const Home = () => {
     setPage(ifProject)
   }
 
-  const { projects } = useQuery(QUERY_ME)
-  console.log('hello', projects)
+  const { data } = useQuery(QUERY_ME)
+  const projects = data?.me.projects || [];
 
   return (
     <div className="body">
@@ -54,9 +54,10 @@ const Home = () => {
             <h1 onClick={handleToggle} id="projects-nav">🏗️ Projects<span id="projects-span">{isHidden ? "►" : "▼"}</span></h1>
           </li>
           <li id="projects-drop" className={`app ${isHidden ? "hidden" : ""}`}>
-            <h3 onClick={handlePageChanging} id="3">Project 1</h3>
-            <h3 onClick={handlePageChanging} id="4">Project 2</h3>
-            <h3 onClick={handlePageChanging} id="5">Project 3</h3>
+            { projects.map( (project, index) => (
+              <h3 onClick={handlePageChanging} key={index} id={index + 3}>{project.projectName}</h3>
+            ))
+            }
           </li>
         </ul>
       </nav>
