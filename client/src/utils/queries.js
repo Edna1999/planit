@@ -41,6 +41,27 @@ export const QUERY_PROJECTS = gql`
   }
 `
 
+export const QUERY_PROJECT = gql`
+  query project($projectId: String!) {
+    project {
+      _id
+      projectName
+      projectDescription
+      startDate
+      endDate
+      isComplete
+      tasks {
+        _id
+        taskName
+      }
+      user{
+        _id
+        username
+      }
+    }
+  }
+`
+
 export const QUERY_ME = gql`
   query me {
     me {
