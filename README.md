@@ -19,7 +19,7 @@
 
   To install this project, download the files from our repository at https://github.com/Edna1999/planit. Run an NPM install in the console to load in the correct packages, run an 'npm run seed' to load in any seed data, and finally do an 'npm run develop' to start the application! Navigate to the local site at http://localhost:3000 to view the homewebpage. You can also navigate to http://localhost:3001/graphql to interact with the server's various queries and mutations.
 
-  You can also visit the deployed webpage via the following link: https://salty-island-98414.herokuapp.com/
+  You can also visit the deployed webpage via the following link: https://planit.herokuapp.com/
   
   ## Usage
 
