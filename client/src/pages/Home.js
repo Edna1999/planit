@@ -71,7 +71,7 @@ const Home = () => {
           </li>
           <li id="projects-drop" className={`app ${isHidden ? "hidden" : ""}`}>
             { projects.map( (project, index) => (
-              <h3 onClick={handlePageChanging} key={index} id={index + 3} projectid={project._id}>{project.projectName}</h3>
+              <h3 onClick={handlePageChanging} key={index} id={index + 3} projectId={project._id}>{project.projectName}</h3>
             ))
             }
           </li>
@@ -105,7 +105,7 @@ const Home = () => {
           </li>
           <li id="projects-drop" className={`app ${isHidden ? "hidden" : ""}`}>
             { projects.map( (project, index) => (
-              <h3 onClick={handlePageChanging} key={index} id={index + 3} projectid={project._id}>{project.projectName}</h3>
+              <h3 onClick={handlePageChanging} key={index} id={index + 3} projectId={project._id}>{project.projectName}</h3>
             ))
             }
           </li>
